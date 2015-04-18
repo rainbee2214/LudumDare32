@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour 
 {
-    public float speed = 0.01f;
+    public float speed = 1f;
     Vector3 position;
 
     //References for lerping when player is dead
@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
         else //Move Normally
         {
             position = transform.position;
-            position.x += 0.01f;
+            position.x += Time.deltaTime * speed;
             transform.position = position;
         }
 	}

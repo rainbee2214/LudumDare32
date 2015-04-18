@@ -7,7 +7,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    //This class will control the player
+    //This class will control the player, add in numberOfLives
 
     List<Sprite> ship1Colors;
     List<Sprite> ship2Colors;

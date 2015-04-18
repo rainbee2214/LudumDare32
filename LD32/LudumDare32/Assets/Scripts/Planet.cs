@@ -14,6 +14,7 @@ public class Planet : MonoBehaviour
     {
         //Get the planet radius from the collider
         radius = GetComponent<CircleCollider2D>().radius * 50;
+        GetComponent<CircleCollider2D>().radius = (radius / 50f) * 1.25f;
         SetupPlanet();
     }
 
@@ -75,5 +76,14 @@ public class Planet : MonoBehaviour
     public void PrintStats()
     {
         Debug.Log("Radius: " + radius + "\nJunk: " + junk + "\nOrganics: " + organics + "\nMetals: " + metals + "\nCyrstals: " + cyrstals + "\nPeople: " + people);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("Start game!");
+            //Start planet mining game over planet.
+        }
     }
 }
