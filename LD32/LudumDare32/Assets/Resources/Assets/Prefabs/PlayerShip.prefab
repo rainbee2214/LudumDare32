@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentColor: 0
   currentShipType: 0
+  explosion: {fileID: 0}
 --- !u!114 &11451002
 MonoBehaviour:
   m_ObjectHideFlags: 1
