@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 455344}
   - 212: {fileID: 21243288}
   - 58: {fileID: 5819638}
+  - 114: {fileID: 11485310}
   m_Layer: 0
   m_Name: Planet8
   m_TagString: Untagged
@@ -42,6 +43,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.4849999
+--- !u!114 &11485310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117cdb7c9881cdb4eb8c7648bdd4463d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21243288
 SpriteRenderer:
   m_ObjectHideFlags: 1

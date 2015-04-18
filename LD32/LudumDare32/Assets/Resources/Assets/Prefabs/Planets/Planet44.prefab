@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 426404}
   - 212: {fileID: 21230416}
   - 58: {fileID: 5893268}
+  - 114: {fileID: 11417222}
   m_Layer: 0
   m_Name: Planet44
   m_TagString: Untagged
@@ -42,6 +43,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.16499996
+--- !u!114 &11417222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117cdb7c9881cdb4eb8c7648bdd4463d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21230416
 SpriteRenderer:
   m_ObjectHideFlags: 1

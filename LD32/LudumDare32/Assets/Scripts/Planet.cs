@@ -17,16 +17,33 @@ public class Planet : MonoBehaviour
         SetupPlanet();
     }
 
-    void Start()
+    public void Explode()
     {
+        //Planet will explode and play an explosion animation and then turn itself off
 
+        //Play animation
+
+        gameObject.SetActive(false);
     }
 
-    void Update()
+    public void MineResource(string resourceName)
     {
-
+        switch(resourceName)
+        {
+            case "Junk": if (junk > 0) junk--; break;
+            case "Organics": if (organics > 0) organics--; break;
+            case "Metals": if (metals > 0) metals--; break;
+            case "Cyrstals": if (cyrstals > 0) cyrstals--; break;
+            case "People": if (people > 0) people--; break;
+            default: break;
+        }
     }
 
+    public void MineJunk() { if (junk > 0) junk--; }
+    public void MineOrganics() { if (organics > 0) organics--; }
+    public void MineMetals() { if (metals > 0) metals--; }
+    public void MineCyrstals() { if (cyrstals > 0) cyrstals--; }
+    public void MinePeople() { if (people > 0) people--; }
 
     public void SetupPlanet()
     {
@@ -52,7 +69,7 @@ public class Planet : MonoBehaviour
             }
             count++;
         }
-        PrintStats();
+        //PrintStats();
     }
 
     public void PrintStats()
