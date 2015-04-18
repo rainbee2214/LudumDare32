@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     float startTime;
     float lerpSpeed = 5f;
 
-    bool moveToPlanet = false;
+    public bool moveToPlanet = false;
 
 	void Update ()
     {
@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
             if (moveToPlanet) //Lerp to the planet position
             {
                 Debug.Log("Moving to planet.");
+                transform.position = GameController.controller.CurrentPlanetLocation;
             }
             else //Wait in place until the mining game is over
             {

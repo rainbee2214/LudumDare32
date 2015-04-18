@@ -89,6 +89,7 @@ public class Planet : MonoBehaviour
         //Set the planet location that was touched
         GameController.controller.CurrentPlanetLocation = transform.position;
         //Set the camera starting position (to go back to after the mini game)
+        GameController.controller.StartingLocation = Camera.main.transform.position;
         //Start planet mining game over planet.
 
     }
