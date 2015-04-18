@@ -47,6 +47,9 @@ TagManager:
   - name: Planets
     uniqueID: 3202133851
     locked: 0
+  - name: Resource
+    uniqueID: 472629043
+    locked: 0
   - name: PlayerShip
     uniqueID: 2426212625
     locked: 0
