@@ -22,8 +22,9 @@ public class CameraController : MonoBehaviour
         {
             if (moveToPlanet) //Lerp to the planet position
             {
-                Debug.Log("Moving to planet.");
-                transform.position = GameController.controller.CurrentPlanetLocation;
+                //Debug.Log("Moving to planet.");
+                transform.position = Vector3.Lerp(transform.position, GameController.controller.CurrentPlanetLocation, Time.deltaTime * lerpSpeed);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             }
             else //Wait in place until the mining game is over
             {

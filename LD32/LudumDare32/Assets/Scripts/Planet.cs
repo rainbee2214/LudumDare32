@@ -83,6 +83,11 @@ public class Planet : MonoBehaviour
         if (other.tag == "Player") StartMiniGame();
     }
 
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player") StopMiniGame();
+    }
+
     public void StartMiniGame()
     {
         Debug.Log("Start game!");
@@ -90,7 +95,14 @@ public class Planet : MonoBehaviour
         GameController.controller.CurrentPlanetLocation = transform.position;
         //Set the camera starting position (to go back to after the mini game)
         GameController.controller.StartingLocation = Camera.main.transform.position;
+        GameController.controller.StartMiniGame();
         //Start planet mining game over planet.
+
+    }
+
+    public void StopMiniGame()
+    {
+        GameController.controller.StopMiniGame();
 
     }
 }
