@@ -43,7 +43,8 @@ public class GameController : MonoBehaviour
 
     public void StopMiniGame()
     {
-        cameraController.stop = false;
         cameraController.moveToPlanet = false;
+        cameraController.readyToStart = true;
+        cameraController.turnOnTime = Time.time + cameraController.lerpDelay;
     }
 }

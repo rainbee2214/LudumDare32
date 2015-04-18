@@ -15,9 +15,13 @@ public class CameraController : MonoBehaviour
     float lerpSpeed = 5f;
 
     public bool moveToPlanet = false;
+    public float turnOnTime;
+    public float lerpDelay = 1f;
+    public bool readyToStart = false;
 
 	void Update ()
     {
+        if (readyToStart && Time.time > turnOnTime) stop = false;
         if (stop)
         {
             if (moveToPlanet) //Lerp to the planet position
@@ -26,9 +30,12 @@ public class CameraController : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, GameController.controller.CurrentPlanetLocation, Time.deltaTime * lerpSpeed);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             }
-            else //Wait in place until the mining game is over
+            else //Still stopped but not moving towards the planet, lerp to the old position that we started at
             {
-                Debug.Log("Playing mini game.");
+                transform.position = Vector3.Lerp(transform.position, GameController.controller.StartingLocation, Time.deltaTime * lerpSpeed);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                //When we get to the startingLocation (within a small amount), start the movement again
+                
             }
         }
         else
