@@ -5,6 +5,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController controller;
 
+    CameraController cameraController;
+    
     Vector2 currentPlanetLocation;
     public Vector2 CurrentPlanetLocation
     {
@@ -30,16 +32,18 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Debug.Log(controller);
+        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
     }
 
-    void Start()
+    public void StartMiniGame()
     {
-
+        cameraController.stop = true;
+        cameraController.moveToPlanet = true;
     }
 
-    void Update()
+    public void StopMiniGame()
     {
-
+        cameraController.stop = false;
+        cameraController.moveToPlanet = false;
     }
 }
