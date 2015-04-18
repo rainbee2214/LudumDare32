@@ -6,8 +6,8 @@ public class SectorGenerator : MonoBehaviour
 {
     public List<GameObject> planets;
     //This will generate a sector of space, and populate it with planets
-    public float planetDistance = 50f;
-    public float planetVariance = 15f;
+    public float planetDistance = 15f;
+    public float planetVariance = 5f;
     public int numPlanets = 10;
 
     public List<GameObject> currentPlanets;

@@ -16,12 +16,16 @@ public class CameraController : MonoBehaviour
 
     public bool moveToPlanet = false;
     public float turnOnTime;
-    public float lerpDelay = 1f;
+    public float lerpDelay = 0.8f;
     public bool readyToStart = false;
 
 	void Update ()
     {
-        if (readyToStart && Time.time > turnOnTime) stop = false;
+        if (readyToStart && Time.time > turnOnTime)
+        {
+            stop = false;
+            readyToStart = false;
+        }
         if (stop)
         {
             if (moveToPlanet) //Lerp to the planet position

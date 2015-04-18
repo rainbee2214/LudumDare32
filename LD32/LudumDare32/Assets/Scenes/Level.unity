@@ -126,6 +126,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11487694, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
+      propertyPath: planetVariance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11487694, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
+      propertyPath: planetDistance
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
   m_IsPrefabParent: 0
@@ -732,6 +740,9 @@ MonoBehaviour:
   stop: 0
   speed: 1
   moveToPlanet: 0
+  turnOnTime: 0
+  lerpDelay: 1
+  readyToStart: 0
 --- !u!50 &1976594365
 Rigidbody2D:
   m_ObjectHideFlags: 0
