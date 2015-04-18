@@ -29,7 +29,7 @@ public class Planet : MonoBehaviour
 
     public void MineResource(string resourceName)
     {
-        switch(resourceName)
+        switch (resourceName)
         {
             case "Junk": if (junk > 0) junk--; break;
             case "Organics": if (organics > 0) organics--; break;
@@ -54,7 +54,7 @@ public class Planet : MonoBehaviour
         int count = 0;
         while (count < radius)
         {
-            switch (Random.Range(0,500) % 10)
+            switch (Random.Range(0, 500) % 10)
             {
                 case 0: junk++; break;
                 case 1: organics++; break;
@@ -65,8 +65,8 @@ public class Planet : MonoBehaviour
                 case 6: organics += 2; break;
                 case 7: metals += 2; break;
                 case 8: cyrstals += 2; break;
-                case 9: people +=2; break;
-                default: break; 
+                case 9: people += 2; break;
+                default: break;
             }
             count++;
         }
@@ -80,10 +80,16 @@ public class Planet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("Start game!");
-            //Start planet mining game over planet.
-        }
+        if (other.tag == "Player") StartMiniGame();
+    }
+
+    public void StartMiniGame()
+    {
+        Debug.Log("Start game!");
+        //Set the planet location that was touched
+        GameController.controller.CurrentPlanetLocation = transform.position;
+        //Set the camera starting position (to go back to after the mini game)
+        //Start planet mining game over planet.
+
     }
 }

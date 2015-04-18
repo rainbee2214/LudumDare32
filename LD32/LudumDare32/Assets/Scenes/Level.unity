@@ -217,11 +217,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478700, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: .70710659
       objectReference: {fileID: 0}
     - target: {fileID: 478700, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -.707106948
       objectReference: {fileID: 0}
     - target: {fileID: 478700, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
       propertyPath: m_RootOrder
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480d6948a8615d48ac20895ebc1e960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stop: 0
   speed: 1
 --- !u!50 &1976594365
 Rigidbody2D:

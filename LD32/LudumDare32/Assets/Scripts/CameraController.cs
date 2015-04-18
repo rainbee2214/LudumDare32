@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour 
 {
+    public bool stop = false;
     public float speed = 1f;
     Vector3 position;
 
@@ -12,19 +13,35 @@ public class CameraController : MonoBehaviour
     float journeyLength;
     float startTime;
     float lerpSpeed = 5f;
-	
+
+    bool moveToPlanet = false;
+
 	void Update ()
     {
-        if (playerDead) //Lerp to death site, lock at z of -10
+        if (stop)
         {
-            transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed) / journeyLength);
-            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            if (moveToPlanet) //Lerp to the planet position
+            {
+                Debug.Log("Moving to planet.");
+            }
+            else //Wait in place until the mining game is over
+            {
+                Debug.Log("Playing mini game.");
+            }
         }
-        else //Move Normally
+        else
         {
-            position = transform.position;
-            position.x += Time.deltaTime * speed;
-            transform.position = position;
+            if (playerDead) //Lerp to death site, lock at z of -10
+            {
+                transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed) / journeyLength);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            }
+            else //Move Normally
+            {
+                position = transform.position;
+                position.x += Time.deltaTime * speed;
+                transform.position = position;
+            }
         }
 	}
 
@@ -41,13 +58,13 @@ public class CameraController : MonoBehaviour
     }
 
     //Explode the player as out of bounds
-    void OnCollisionEnter2D(Collision2D c)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (c.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            c.gameObject.GetComponent<Player>().Explode();
+            collision.gameObject.GetComponent<Player>().Explode();
             lastCamPos = transform.position;
-            playerDeathPos = c.gameObject.transform.position;
+            playerDeathPos = collision.gameObject.transform.position;
             startTime = Time.time;
             journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
             playerDead = true;
