@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        position = transform.position;
     }
 
     public void Move(float distance)

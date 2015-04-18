@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     Animator anim;
     SpriteRenderer srenderer;
 
+    //Reference for death explosion
+    public GameObject explosion;
+    bool exploding = false;
+
     void Awake()
     {
         srenderer = GetComponent<SpriteRenderer>();
@@ -61,5 +65,15 @@ public class Player : MonoBehaviour
         
         lastColor = currentColor;
         lastShipType = currentShipType;
+    }
+
+    public void Explode()
+    {
+        if (explosion != null && !exploding)
+        {
+            exploding = true;
+            Instantiate(explosion, transform.position, transform.rotation);
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }
