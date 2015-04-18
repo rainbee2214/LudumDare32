@@ -21,12 +21,16 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        if (controller != this) Destroy(controller);
-        else
+        if (controller == null)
         {
+            DontDestroyOnLoad(gameObject);
             controller = this;
-            DontDestroyOnLoad(controller);
         }
+        else if (controller != this)
+        {
+            Destroy(gameObject);
+        }
+        Debug.Log(controller);
     }
 
     void Start()
