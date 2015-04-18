@@ -38,9 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 26356989
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: PlayerShip
     uniqueID: 2426212625
+  - name: Planets
+    uniqueID: 3202133851
     locked: 0
