@@ -48,6 +48,9 @@ public class CameraController : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed) / journeyLength);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                //If camera has reached the death site, set the playerDead in gameController
+                if (transform.position.x == playerDeathPos.x) GameController.controller.PlayerDead = true;//Application.LoadLevel("Death");
+
             }
             else //Move Normally
             {

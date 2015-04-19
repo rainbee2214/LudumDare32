@@ -6,7 +6,14 @@ public class GameController : MonoBehaviour
     public static GameController controller;
 
     CameraController cameraController;
-    
+
+    bool playerDead = false;
+    public bool PlayerDead
+    {
+        get { return playerDead; }
+        set { playerDead = value; }
+    }
+
     Vector2 currentPlanetLocation;
     public Vector2 CurrentPlanetLocation
     {
@@ -46,5 +53,14 @@ public class GameController : MonoBehaviour
         cameraController.moveToPlanet = false;
         cameraController.readyToStart = true;
         cameraController.turnOnTime = Time.time + cameraController.lerpDelay;
+    }
+
+    void Update()
+    {
+        if (playerDead)
+        {
+            playerDead = false;
+            Application.LoadLevel("GameOver");
+        }
     }
 }
