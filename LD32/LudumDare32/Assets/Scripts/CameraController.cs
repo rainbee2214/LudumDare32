@@ -48,7 +48,6 @@ public class CameraController : MonoBehaviour
                 transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed*2) / journeyLength);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
                 //If camera has reached the death site, set the playerDead in gameController
-                Debug.Log("About to set true L51 CamController");
                 if (transform.position.x == playerDeathPos.x)
                 {
                     playerDead = false;

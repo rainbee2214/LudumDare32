@@ -7,8 +7,12 @@ public class Planet : MonoBehaviour
     //Each planet will have different levels of each resource
     //Junk, metal, organics, crystals, people
 
-    int junk, metals, organics, cyrstals, people;
+    int junk, metals, organics, crystals, people;
     float radius;
+
+    bool playingGame = false;
+    float nextEmitTime;
+    float emitDelay = 0.5f;
 
     void Awake()
     {
@@ -25,7 +29,7 @@ public class Planet : MonoBehaviour
             case "Junk": if (junk > 0) junk--; break;
             case "Organics": if (organics > 0) organics--; break;
             case "Metals": if (metals > 0) metals--; break;
-            case "Cyrstals": if (cyrstals > 0) cyrstals--; break;
+            case "Cyrstals": if (crystals > 0) crystals--; break;
             case "People": if (people > 0) people--; break;
             default: break;
         }
@@ -57,10 +61,10 @@ public class Planet : MonoBehaviour
     }
     public void MineCrystals()
     {
-        if (cyrstals > 0)
+        if (crystals > 0)
         {
             GameController.controller.Crystals = 1;
-            cyrstals--;
+            crystals--;
         }
     }
     public void MinePeople()
@@ -76,7 +80,7 @@ public class Planet : MonoBehaviour
     {
         //Generate the levels of resources for each planet
         //Each planet, based on it's radius, will have a max quota of resources
-        junk = 0; organics = 0; metals = 0; cyrstals = 0; people = 0;
+        junk = 0; organics = 0; metals = 0; crystals = 0; people = 0;
         int count = 0;
         while (count < radius)
         {
@@ -85,12 +89,12 @@ public class Planet : MonoBehaviour
                 case 0: junk++; break;
                 case 1: organics++; break;
                 case 2: metals++; break;
-                case 3: cyrstals++; break;
+                case 3: crystals++; break;
                 case 4: people++; break;
                 case 5: junk += 2; break;
                 case 6: organics += 2; break;
                 case 7: metals += 2; break;
-                case 8: cyrstals += 2; break;
+                case 8: crystals += 2; break;
                 case 9: people += 2; break;
                 default: break;
             }
@@ -101,7 +105,7 @@ public class Planet : MonoBehaviour
 
     public void PrintStats()
     {
-        Debug.Log("Radius: " + radius + "\nJunk: " + junk + "\nOrganics: " + organics + "\nMetals: " + metals + "\nCyrstals: " + cyrstals + "\nPeople: " + people);
+        Debug.Log("Radius: " + radius + "\nJunk: " + junk + "\nOrganics: " + organics + "\nMetals: " + metals + "\nCyrstals: " + crystals + "\nPeople: " + people);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -123,6 +127,78 @@ public class Planet : MonoBehaviour
         GameController.controller.StartingLocation = Camera.main.transform.position;
         GameController.controller.StartMiniGame();
         //Start planet mining game over planet.
+        playingGame = true;
+        nextEmitTime = Time.time;
+    }
+
+    void Update()
+    {
+        if (playingGame && Time.time > nextEmitTime)
+        {
+            if (!EmptyResources())
+            {
+                bool foundResource = false;
+                while (!foundResource)
+                {
+                    switch (Random.Range(0, 500) % 5)
+                    {
+                        case 0:
+                            {
+                                if (crystals > 0)
+                                {
+                                    Debug.Log("Turning on the crystal.");
+                                    foundResource = true;
+                                    crystals--;
+                                }
+                                break;
+                            }
+                        case 1:
+                            {
+                                if (organics > 0)
+                                {
+                                    Debug.Log("Turning on the organics.");
+                                    foundResource = true;
+                                    organics--;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (metals > 0)
+                                {
+                                    Debug.Log("Turning on the metals.");
+                                    foundResource = true;
+                                    metals--;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (people > 0)
+                                {
+                                    Debug.Log("Turning on the people.");
+                                    foundResource = true;
+                                    people--;
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                if (junk > 0)
+                                {
+                                    Debug.Log("Turning on the junk.");
+                                    foundResource = true;
+                                    junk--;
+                                }
+                                break;
+                            }
+                    }
+                }
+                nextEmitTime = Time.time + emitDelay;
+            }
+            else playingGame = false;
+        }
+
 
     }
 
@@ -130,5 +206,10 @@ public class Planet : MonoBehaviour
     {
         GameController.controller.StopMiniGame();
 
+    }
+
+    bool EmptyResources()
+    {
+        return (organics == 0 && people == 0 && junk == 0 && metals == 0 && crystals == 0);
     }
 }

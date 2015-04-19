@@ -52,6 +52,14 @@ public class Resource : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("Collecting " + gameObject.name);
+        switch(gameObject.name.Substring(0,4))
+        {
+            case "Crys": GameController.controller.Crystals = 1; break;
+            case "Orga": GameController.controller.Organics = 1; break;
+            case "Meta": GameController.controller.Metals = 1; break;
+            case "Peop": GameController.controller.People = 1; break;
+            case "Junk": GameController.controller.Junk = 1; break;
+        }
         anim.SetTrigger("Clicked");
     }
 }
