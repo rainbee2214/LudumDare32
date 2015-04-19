@@ -364,7 +364,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 200
+    maxNumParticles: 400
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -372,9 +372,9 @@ ParticleSystem:
     radius: 9.27999973
     angle: 25
     length: 5
-    boxX: 27.8899994
+    boxX: 58.5
     boxY: 1
-    boxZ: 69
+    boxZ: 128.199997
     arc: 274.339996
     placementMode: 1
     m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -383,7 +383,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 250
+      scalar: 400
       maxCurve:
         serializedVersion: 2
         m_Curve:
