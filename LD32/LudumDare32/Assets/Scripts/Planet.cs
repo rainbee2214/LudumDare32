@@ -115,7 +115,7 @@ public class Planet : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player") StopMiniGame();
+        if (other.tag == "Player" && playingGame) StopMiniGame();
     }
 
     public void StartMiniGame()
@@ -131,6 +131,15 @@ public class Planet : MonoBehaviour
         nextEmitTime = Time.time;
     }
 
+    Vector2 GetRandomLocationOnPlanet()
+    {
+        float x = transform.position.x, y = transform.position.y;
+        float r = radius / 120f;
+        x += (Random.Range(-r, r));
+        y += (Random.Range(-r, r));
+        return new Vector2(x,y);
+    }
+
     void Update()
     {
         if (playingGame && Time.time > nextEmitTime)
@@ -138,6 +147,7 @@ public class Planet : MonoBehaviour
             if (!EmptyResources())
             {
                 bool foundResource = false;
+                Vector2 location = GetRandomLocationOnPlanet();
                 while (!foundResource)
                 {
                     switch (Random.Range(0, 500) % 5)
@@ -146,7 +156,8 @@ public class Planet : MonoBehaviour
                             {
                                 if (crystals > 0)
                                 {
-                                    Debug.Log("Turning on the crystal.");
+                                    //Debug.Log("Turning on the crystal.");
+                                    GameController.controller.miniGameController.StartResource("Crystals", location);
                                     foundResource = true;
                                     crystals--;
                                 }
@@ -156,7 +167,8 @@ public class Planet : MonoBehaviour
                             {
                                 if (organics > 0)
                                 {
-                                    Debug.Log("Turning on the organics.");
+                                    //Debug.Log("Turning on the organics.");
+                                    GameController.controller.miniGameController.StartResource("Organics", location);
                                     foundResource = true;
                                     organics--;
                                 }
@@ -166,7 +178,8 @@ public class Planet : MonoBehaviour
                             {
                                 if (metals > 0)
                                 {
-                                    Debug.Log("Turning on the metals.");
+                                    //Debug.Log("Turning on the metals.");
+                                    GameController.controller.miniGameController.StartResource("Metals", location);
                                     foundResource = true;
                                     metals--;
                                 }
@@ -176,7 +189,8 @@ public class Planet : MonoBehaviour
                             {
                                 if (people > 0)
                                 {
-                                    Debug.Log("Turning on the people.");
+                                    //Debug.Log("Turning on the people.");
+                                    GameController.controller.miniGameController.StartResource("People", location);
                                     foundResource = true;
                                     people--;
                                 }
@@ -186,7 +200,8 @@ public class Planet : MonoBehaviour
                             {
                                 if (junk > 0)
                                 {
-                                    Debug.Log("Turning on the junk.");
+                                    //Debug.Log("Turning on the junk.");
+                                    GameController.controller.miniGameController.StartResource("Junk", location);
                                     foundResource = true;
                                     junk--;
                                 }
@@ -196,7 +211,11 @@ public class Planet : MonoBehaviour
                 }
                 nextEmitTime = Time.time + emitDelay;
             }
-            else playingGame = false;
+            else
+            {
+                playingGame = false;
+                StopMiniGame();
+            }
         }
 
 
@@ -205,7 +224,7 @@ public class Planet : MonoBehaviour
     public void StopMiniGame()
     {
         GameController.controller.StopMiniGame();
-
+        playingGame = false;
     }
 
     bool EmptyResources()

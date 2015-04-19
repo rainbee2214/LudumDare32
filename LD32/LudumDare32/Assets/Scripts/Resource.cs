@@ -51,7 +51,7 @@ public class Resource : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Collecting " + gameObject.name);
+        //Debug.Log("Collecting " + gameObject.name);
         switch(gameObject.name.Substring(0,4))
         {
             case "Crys": GameController.controller.Crystals = 1; break;

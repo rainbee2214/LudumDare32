@@ -12,20 +12,57 @@ public class MiniGameController : MonoBehaviour
     public List<GameObject> peoplePool;
     public List<GameObject> junkPool;
 
+    int topCrystal, topOrganics, topMetals, topPeople, topJunk;
+
     void Awake()
     {
         GetResources();
     }
     
-    public void StartResource(string resourceType)
+    public void StartResource(string resourceType, Vector2 location)
     {
         switch (resourceType)
         {
-            case "Crystals": break;
-            case "Organics": break;
-            case "Metals": break;
-            case "People": break;
-            case "Junk": break;
+            case "Crystals":
+                {
+                    crystalPool[topCrystal].transform.position = location;
+                    crystalPool[topCrystal].GetComponent<Resource>().Restart();
+                    topCrystal++;
+                    if (topCrystal >= crystalPool.Count) topCrystal = 0;
+                    break;
+                }
+            case "Organics":
+                {
+                    organicsPool[topOrganics].transform.position = location;
+                    organicsPool[topOrganics].GetComponent<Resource>().Restart();
+                    topOrganics++;
+                    if (topOrganics >= organicsPool.Count) topOrganics = 0;
+                    break;
+                }
+            case "Metals":
+                {
+                    metalsPool[topMetals].transform.position = location;
+                    metalsPool[topMetals].GetComponent<Resource>().Restart();
+                    topMetals++;
+                    if (topMetals >= metalsPool.Count) topMetals = 0;
+                    break;
+                }
+            case "People":
+                {
+                    peoplePool[topPeople].transform.position = location;
+                    peoplePool[topPeople].GetComponent<Resource>().Restart();
+                    topPeople++;
+                    if (topPeople >= peoplePool.Count) topPeople = 0;
+                    break;
+                }
+            case "Junk":
+                {
+                    junkPool[topJunk].transform.position = location;
+                    junkPool[topJunk].GetComponent<Resource>().Restart();
+                    topJunk++;
+                    if (topJunk >= junkPool.Count) topJunk = 0;
+                    break;
+                }
         }
     }
 
