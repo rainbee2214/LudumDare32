@@ -8,10 +8,7 @@ public class SetupController : MonoBehaviour
     public GameObject[] raceSelect;
     public InputField playerName;
 
-    int selectedRace = 0;
-    int selectedShipType = 0;
-    int selectedShipColor = 0;
-
+    #region ResetUI
     void ResetShips()
     {
         for (int i = 0; i < shipSelect.Length; i++)
@@ -23,7 +20,9 @@ public class SetupController : MonoBehaviour
         for (int i = 0; i < raceSelect.Length; i++)
             raceSelect[i].SetActive(false);
     }
+    #endregion
 
+    #region SetShip 
     //Sets the selected image on ship when clicked
     public void ShipButtonClick(GameObject overlay)
     {
@@ -32,9 +31,11 @@ public class SetupController : MonoBehaviour
     }
     
     //Sets the type/color of ship when clicked
-    public void ShipButtonSetType(int typeIndex) { selectedShipType = typeIndex; }
-    public void ShipButtonSetColor(int colorIndex) { selectedShipColor = colorIndex; LogSelection(); }
+    public void ShipButtonSetType(int typeIndex) { GameController.controller.ShipType = typeIndex; }
+    public void ShipButtonSetColor(int colorIndex) { GameController.controller.ShipColor = colorIndex; }
+    #endregion
 
+    #region SetRace
     //Sets the selected image on race when clicked
     public void RaceButtonClick(GameObject overlay)
     {
@@ -43,10 +44,8 @@ public class SetupController : MonoBehaviour
     }
     
     //Sets the index of race when clicked
-    public void RaceButtonSetIndex(int typeIndex) { selectedRace = typeIndex; LogSelection(); }
+    public void RaceButtonSetIndex(int typeIndex) { GameController.controller.RaceType = typeIndex; }
+    #endregion
 
-    void LogSelection()
-    {
-        Debug.Log("Selected Ship - Type: " + selectedShipType + " Color: " + selectedShipColor + "   Selected Race: " + selectedRace);
-    }
+    public void SetPlayerName(InputField input){ GameController.controller.PlayerName = input.text; }
 }

@@ -7,6 +7,35 @@ public class GameController : MonoBehaviour
 
     CameraController cameraController;
 
+    #region Properties
+    string playerName = "Bob";
+    public string PlayerName
+    {
+        get { return playerName; }
+        set { playerName = value; }
+    }
+
+    int shipType = 0;
+    public int ShipType
+    {
+        get { return shipType; }
+        set { shipType = value; }
+    }
+
+    int shipColor = 0;
+    public int ShipColor
+    {
+        get { return ShipColor; }
+        set { shipColor = value; }
+    }
+
+    int raceType = 0;
+    public int RaceType
+    {
+        get { return raceType; }
+        set { raceType = value; }
+    }
+
     bool playerDead = false;
     public bool PlayerDead
     {
@@ -27,6 +56,7 @@ public class GameController : MonoBehaviour
         get { return startingLocation; }
         set { startingLocation = value; }
     }
+    #endregion
 
     void Awake()
     {
