@@ -7,8 +7,12 @@ public class Planet : MonoBehaviour
     //Each planet will have different levels of each resource
     //Junk, metal, organics, crystals, people
 
-    int junk, metals, organics, cyrstals, people;
+    int junk, metals, organics, crystals, people;
     float radius;
+
+    bool playingGame = false;
+    float nextEmitTime;
+    float emitDelay = 0.5f;
 
     void Awake()
     {
@@ -25,7 +29,7 @@ public class Planet : MonoBehaviour
             case "Junk": if (junk > 0) junk--; break;
             case "Organics": if (organics > 0) organics--; break;
             case "Metals": if (metals > 0) metals--; break;
-            case "Cyrstals": if (cyrstals > 0) cyrstals--; break;
+            case "Cyrstals": if (crystals > 0) crystals--; break;
             case "People": if (people > 0) people--; break;
             default: break;
         }
@@ -57,10 +61,10 @@ public class Planet : MonoBehaviour
     }
     public void MineCrystals()
     {
-        if (cyrstals > 0)
+        if (crystals > 0)
         {
             GameController.controller.Crystals = 1;
-            cyrstals--;
+            crystals--;
         }
     }
     public void MinePeople()
@@ -76,7 +80,7 @@ public class Planet : MonoBehaviour
     {
         //Generate the levels of resources for each planet
         //Each planet, based on it's radius, will have a max quota of resources
-        junk = 0; organics = 0; metals = 0; cyrstals = 0; people = 0;
+        junk = 0; organics = 0; metals = 0; crystals = 0; people = 0;
         int count = 0;
         while (count < radius)
         {
@@ -85,12 +89,12 @@ public class Planet : MonoBehaviour
                 case 0: junk++; break;
                 case 1: organics++; break;
                 case 2: metals++; break;
-                case 3: cyrstals++; break;
+                case 3: crystals++; break;
                 case 4: people++; break;
                 case 5: junk += 2; break;
                 case 6: organics += 2; break;
                 case 7: metals += 2; break;
-                case 8: cyrstals += 2; break;
+                case 8: crystals += 2; break;
                 case 9: people += 2; break;
                 default: break;
             }
@@ -101,7 +105,7 @@ public class Planet : MonoBehaviour
 
     public void PrintStats()
     {
-        Debug.Log("Radius: " + radius + "\nJunk: " + junk + "\nOrganics: " + organics + "\nMetals: " + metals + "\nCyrstals: " + cyrstals + "\nPeople: " + people);
+        Debug.Log("Radius: " + radius + "\nJunk: " + junk + "\nOrganics: " + organics + "\nMetals: " + metals + "\nCyrstals: " + crystals + "\nPeople: " + people);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -111,7 +115,7 @@ public class Planet : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player") StopMiniGame();
+        if (other.tag == "Player" && playingGame) StopMiniGame();
     }
 
     public void StartMiniGame()
@@ -123,12 +127,108 @@ public class Planet : MonoBehaviour
         GameController.controller.StartingLocation = Camera.main.transform.position;
         GameController.controller.StartMiniGame();
         //Start planet mining game over planet.
+        playingGame = true;
+        nextEmitTime = Time.time;
+    }
+
+    Vector2 GetRandomLocationOnPlanet()
+    {
+        float x = transform.position.x, y = transform.position.y;
+        float r = radius / 120f;
+        x += (Random.Range(-r, r));
+        y += (Random.Range(-r, r));
+        return new Vector2(x,y);
+    }
+
+    void Update()
+    {
+        if (playingGame && Time.time > nextEmitTime)
+        {
+            if (!EmptyResources())
+            {
+                bool foundResource = false;
+                Vector2 location = GetRandomLocationOnPlanet();
+                while (!foundResource)
+                {
+                    switch (Random.Range(0, 500) % 5)
+                    {
+                        case 0:
+                            {
+                                if (crystals > 0)
+                                {
+                                    //Debug.Log("Turning on the crystal.");
+                                    GameController.controller.miniGameController.StartResource("Crystals", location);
+                                    foundResource = true;
+                                    crystals--;
+                                }
+                                break;
+                            }
+                        case 1:
+                            {
+                                if (organics > 0)
+                                {
+                                    //Debug.Log("Turning on the organics.");
+                                    GameController.controller.miniGameController.StartResource("Organics", location);
+                                    foundResource = true;
+                                    organics--;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (metals > 0)
+                                {
+                                    //Debug.Log("Turning on the metals.");
+                                    GameController.controller.miniGameController.StartResource("Metals", location);
+                                    foundResource = true;
+                                    metals--;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (people > 0)
+                                {
+                                    //Debug.Log("Turning on the people.");
+                                    GameController.controller.miniGameController.StartResource("People", location);
+                                    foundResource = true;
+                                    people--;
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                if (junk > 0)
+                                {
+                                    //Debug.Log("Turning on the junk.");
+                                    GameController.controller.miniGameController.StartResource("Junk", location);
+                                    foundResource = true;
+                                    junk--;
+                                }
+                                break;
+                            }
+                    }
+                }
+                nextEmitTime = Time.time + emitDelay;
+            }
+            else
+            {
+                playingGame = false;
+                StopMiniGame();
+            }
+        }
+
 
     }
 
     public void StopMiniGame()
     {
         GameController.controller.StopMiniGame();
+        playingGame = false;
+    }
 
+    bool EmptyResources()
+    {
+        return (organics == 0 && people == 0 && junk == 0 && metals == 0 && crystals == 0);
     }
 }

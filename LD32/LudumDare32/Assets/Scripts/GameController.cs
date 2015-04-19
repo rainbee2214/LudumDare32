@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour
 
     public UIController uiController;
     CameraController cameraController;
+    [HideInInspector]
+    public MiniGameController miniGameController;
+
     public GameObject mainCam;
 
     #region Properties
@@ -106,7 +109,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        cameraController = mainCam.GetComponent<CameraController>();//GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        cameraController = mainCam.GetComponent<CameraController>();
+        miniGameController = GetComponentInChildren<MiniGameController>();
     }
 
     public void StartMiniGame()
