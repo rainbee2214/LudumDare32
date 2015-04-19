@@ -18,15 +18,6 @@ public class Planet : MonoBehaviour
         SetupPlanet();
     }
 
-    public void Explode()
-    {
-        //Planet will explode and play an explosion animation and then turn itself off
-
-        //Play animation
-
-        gameObject.SetActive(false);
-    }
-
     public void MineResource(string resourceName)
     {
         switch (resourceName)
@@ -40,11 +31,46 @@ public class Planet : MonoBehaviour
         }
     }
 
-    public void MineJunk() { if (junk > 0) junk--; }
-    public void MineOrganics() { if (organics > 0) organics--; }
-    public void MineMetals() { if (metals > 0) metals--; }
-    public void MineCyrstals() { if (cyrstals > 0) cyrstals--; }
-    public void MinePeople() { if (people > 0) people--; }
+    public void MineJunk()
+    {
+        if (junk > 0)
+        {
+            junk--;
+            GameController.controller.Junk = 1;
+        }
+    }
+    public void MineOrganics()
+    {
+        if (organics > 0)
+        {
+            GameController.controller.Organics = 1;
+            organics--;
+        }
+    }
+    public void MineMetals()
+    {
+        if (metals > 0)
+        {
+            GameController.controller.Metals = 1;
+            metals--;
+        }
+    }
+    public void MineCyrstals()
+    {
+        if (cyrstals > 0)
+        {
+            GameController.controller.Cyrstals = 1;
+            cyrstals--;
+        }
+    }
+    public void MinePeople()
+    {
+        if (people > 0)
+        {
+            GameController.controller.People = 1;
+            people--;
+        }
+    }
 
     public void SetupPlanet()
     {

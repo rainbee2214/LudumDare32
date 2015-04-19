@@ -97,6 +97,7 @@ GameObject:
   - 4: {fileID: 232546729}
   - 212: {fileID: 232546728}
   - 58: {fileID: 232546727}
+  - 114: {fileID: 232546730}
   m_Layer: 0
   m_Name: Junk
   m_TagString: Untagged
@@ -155,6 +156,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &232546730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232546726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51f83104913364dab70c8f9b4689bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &234173898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1270,7 @@ GameObject:
   - 4: {fileID: 937061451}
   - 212: {fileID: 937061450}
   - 58: {fileID: 937061449}
+  - 114: {fileID: 937061452}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Untagged
@@ -1316,6 +1329,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &937061452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937061448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51f83104913364dab70c8f9b4689bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1082073763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1350,7 @@ GameObject:
   - 4: {fileID: 1082073766}
   - 212: {fileID: 1082073765}
   - 58: {fileID: 1082073764}
+  - 114: {fileID: 1082073767}
   m_Layer: 0
   m_Name: People
   m_TagString: Untagged
@@ -1384,6 +1409,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!114 &1082073767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1082073763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51f83104913364dab70c8f9b4689bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1087221148
 Prefab:
   m_ObjectHideFlags: 0
@@ -1444,6 +1480,7 @@ GameObject:
   - 4: {fileID: 1103023003}
   - 212: {fileID: 1103023002}
   - 58: {fileID: 1103023001}
+  - 114: {fileID: 1103023004}
   m_Layer: 0
   m_Name: Organic
   m_TagString: Untagged
@@ -1502,6 +1539,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!114 &1103023004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1103023000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51f83104913364dab70c8f9b4689bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1271527001
 Prefab:
   m_ObjectHideFlags: 0
@@ -1571,6 +1619,7 @@ GameObject:
   - 4: {fileID: 1392762290}
   - 212: {fileID: 1392762289}
   - 58: {fileID: 1392762288}
+  - 114: {fileID: 1392762291}
   m_Layer: 0
   m_Name: Metal
   m_TagString: Untagged
@@ -1629,6 +1678,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &1392762291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1392762287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51f83104913364dab70c8f9b4689bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1416172412
 Prefab:
   m_ObjectHideFlags: 0
@@ -1685,6 +1745,10 @@ Prefab:
       propertyPath: currentColor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11440136, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 2027492672}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
   m_IsPrefabParent: 0

@@ -4,11 +4,8 @@ using System.Collections;
 public class Resource : MonoBehaviour
 {
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnMouseDown()
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("Collecting " + gameObject.name);
-        }
+        Debug.Log("Collecting " + gameObject.name);
     }
 }

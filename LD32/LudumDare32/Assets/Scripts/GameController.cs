@@ -8,6 +8,41 @@ public class GameController : MonoBehaviour
     CameraController cameraController;
 
     #region Properties
+    int junk;
+    public int Junk
+    {
+        get { return junk; }
+        set { junk += value; }
+    }
+
+    int metals;
+    public int Metals
+    {
+        get { return metals; }
+        set { metals += value; }
+    }
+
+    int organics;
+    public int Organics
+    {
+        get { return organics; }
+        set { organics += value; }
+    }
+
+    int cyrstals;
+    public int Cyrstals
+    {
+        get { return cyrstals; }
+        set { cyrstals += value; }
+    }
+
+    int people;
+    public int People
+    {
+        get { return people; }
+        set { people += value; }
+    }
+
     string playerName = "Bob";
     public string PlayerName
     {
