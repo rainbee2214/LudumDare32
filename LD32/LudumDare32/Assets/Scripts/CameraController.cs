@@ -38,18 +38,22 @@ public class CameraController : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(transform.position, GameController.controller.StartingLocation, Time.deltaTime * lerpSpeed);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                //When we get to the startingLocation (within a small amount), start the movement again
-                
+                //When we get to the startingLocation (within a small amount), start the movement again 
             }
         }
         else
         {
             if (playerDead) //Lerp to death site, lock at z of -10
             {
-                transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed) / journeyLength);
+                transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed*2) / journeyLength);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
                 //If camera has reached the death site, set the playerDead in gameController
-                if (transform.position.x == playerDeathPos.x) GameController.controller.PlayerDead = true;//Application.LoadLevel("Death");
+                Debug.Log("About to set true L51 CamController");
+                if (transform.position.x == playerDeathPos.x)
+                {
+                    playerDead = false;
+                    GameController.controller.PlayerDead = true;//Application.LoadLevel("Death");
+                }
 
             }
             else //Move Normally
@@ -76,7 +80,7 @@ public class CameraController : MonoBehaviour
     //Explode the player as out of bounds
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && Application.loadedLevelName == "Level")
         {
             collision.gameObject.GetComponent<Player>().Explode();
             lastCamPos = transform.position;
@@ -84,6 +88,7 @@ public class CameraController : MonoBehaviour
             startTime = Time.time;
             journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
             playerDead = true;
+            Debug.Log("Setting true in camera controller on scene " + Application.loadedLevelName);
         }
     }
 }

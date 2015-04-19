@@ -129,16 +129,26 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if  (uiController != null) uiController.UpdateResources(crystals, organics, metals, people, junk);
-        if (playerDead)
+        //When the game over scene is loaded, turn the main camera off
+        //When the setup scene is loaded, turn the main camera back on
+        if (playerDead && Application.loadedLevelName == "Level")
         {
             playerDead = false;
+            Debug.Log("Loading game over");
             Application.LoadLevel("GameOver");
         }
 
-        //When the game over scene is loaded, turn the main camera off
-        if (Application.loadedLevelName == "GameOver") mainCam.SetActive(false);
-        //When the setup scene is loaded, turn the main camera back on
-        if (Application.loadedLevelName == "Setup") mainCam.SetActive(true);
+        if (Application.loadedLevelName == "GameOver")
+        {
+            mainCam.SetActive(false);
+        }
+        else if (Application.loadedLevelName == "Setup")
+        {
+            playerDead = false;
+            mainCam.SetActive(true);
+        }
+        
+        if  (uiController != null) uiController.UpdateResources(crystals, organics, metals, people, junk);
+
     }
 }
