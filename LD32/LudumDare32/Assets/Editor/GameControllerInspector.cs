@@ -12,7 +12,10 @@ public class GameControllerInspector : Editor
         GameController controller = (GameController)target;
 
         //Add whatever properties you want to see here...
-        EditorGUILayout.LabelField("Property:", "" + controller.PlayerDead);
+        EditorGUILayout.LabelField("ShipType:", " " + controller.ShipType);
+        EditorGUILayout.LabelField("ShipColor:", " " + controller.ShipColor);
+        EditorGUILayout.LabelField("RaceType:", " " + controller.RaceType);
+        EditorGUILayout.LabelField("PlayerName:", " " + controller.PlayerName);
     }
 }
 

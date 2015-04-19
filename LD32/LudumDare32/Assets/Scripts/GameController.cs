@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     int shipColor = 0;
     public int ShipColor
     {
-        get { return ShipColor; }
+        get { return shipColor; }
         set { shipColor = value; }
     }
 
