@@ -55,11 +55,11 @@ public class Planet : MonoBehaviour
             metals--;
         }
     }
-    public void MineCyrstals()
+    public void MineCrystals()
     {
         if (cyrstals > 0)
         {
-            GameController.controller.Cyrstals = 1;
+            GameController.controller.Crystals = 1;
             cyrstals--;
         }
     }

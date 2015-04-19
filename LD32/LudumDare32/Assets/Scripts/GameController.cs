@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController controller;
 
+    public UIController uiController;
     CameraController cameraController;
 
     #region Properties
@@ -29,11 +30,11 @@ public class GameController : MonoBehaviour
         set { organics += value; }
     }
 
-    int cyrstals;
-    public int Cyrstals
+    int crystals;
+    public int Crystals
     {
-        get { return cyrstals; }
-        set { cyrstals += value; }
+        get { return crystals; }
+        set { crystals += value; }
     }
 
     int people;
@@ -120,8 +121,14 @@ public class GameController : MonoBehaviour
         cameraController.turnOnTime = Time.time + cameraController.lerpDelay;
     }
 
+    public void SetName()
+    {
+        if (uiController != null) uiController.SetName(raceType, playerName);
+    }
+
     void Update()
     {
+        if  (uiController != null) uiController.UpdateResources(crystals, organics, metals, people, junk);
         if (playerDead)
         {
             playerDead = false;
