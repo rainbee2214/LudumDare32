@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
                 if (transform.position.x == playerDeathPos.x)
                 {
                     playerDead = false;
-                    GameController.controller.PlayerDead = true;//Application.LoadLevel("Death");
+                    GameController.controller.PlayerDead = true;
                 }
 
             }

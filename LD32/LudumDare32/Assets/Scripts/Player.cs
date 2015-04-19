@@ -43,6 +43,12 @@ public class Player : MonoBehaviour
         shipLoader.GetShipColors(ref ship3Colors, 3);
     }
 
+    void Start()
+    {
+        currentColor = GameController.controller.ShipColor;
+        currentShipType = GameController.controller.ShipType;
+    }
+
     void Update()
     {
         if (lastColor != currentColor || lastShipType != currentShipType) ChangeShipColor();
