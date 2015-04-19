@@ -7,7 +7,7 @@ public class GameControllerInspector : Editor
 {
     public override void OnInspectorGUI()
     {
-        //DrawDefaultInspector();
+        DrawDefaultInspector();
 
         GameController controller = (GameController)target;
 

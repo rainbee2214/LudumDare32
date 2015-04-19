@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 
     public UIController uiController;
     CameraController cameraController;
+    public GameObject mainCam;
 
     #region Properties
     int junk;
@@ -105,7 +106,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        cameraController = mainCam.GetComponent<CameraController>();//GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
     }
 
     public void StartMiniGame()
@@ -134,5 +135,10 @@ public class GameController : MonoBehaviour
             playerDead = false;
             Application.LoadLevel("GameOver");
         }
+
+        //When the game over scene is loaded, turn the main camera off
+        if (Application.loadedLevelName == "GameOver") mainCam.SetActive(false);
+        //When the setup scene is loaded, turn the main camera back on
+        if (Application.loadedLevelName == "Setup") mainCam.SetActive(true);
     }
 }
