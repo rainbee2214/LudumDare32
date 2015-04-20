@@ -5,8 +5,12 @@ public class GameController : MonoBehaviour
 {
     public static GameController controller;
 
+    public CurrentPlanetUIController planetUIController;
     public UIController uiController;
     CameraController cameraController;
+    //[HideInInspector]
+    public GameObject player;
+
     [HideInInspector]
     public MiniGameController miniGameController;
 
@@ -83,8 +87,43 @@ public class GameController : MonoBehaviour
         set { playerDead = value; }
     }
 
-    int currentPlanetRadius;
-    public int CurrentPlanetRadius
+    int currentPlanetCrystals = 0;
+    public int CurrentPlanetCrystals
+    {
+        get { return currentPlanetCrystals; }
+        set { currentPlanetCrystals = value; }
+    }
+
+    int currentPlanetOrganics = 0;
+    public int CurrentPlanetOrganics
+    {
+        get { return currentPlanetOrganics; }
+        set { currentPlanetOrganics = value; }
+    }
+
+    int currentPlanetMetals = 0;
+    public int CurrentPlanetMetals
+    {
+        get { return currentPlanetMetals; }
+        set { currentPlanetMetals = value; }
+    }
+
+    int currentPlanetPeople = 0;
+    public int CurrentPlanetPeople
+    {
+        get { return currentPlanetPeople; }
+        set { currentPlanetPeople = value; }
+    }
+
+    int currentPlanetJunk = 0;
+    public int CurrentPlanetJunk
+    {
+        get { return currentPlanetJunk; }
+        set { currentPlanetJunk = value; }
+    }
+
+    float currentPlanetRadius;
+    public float CurrentPlanetRadius
     {
         get { return currentPlanetRadius; }
         set { currentPlanetRadius = value; }
@@ -124,6 +163,7 @@ public class GameController : MonoBehaviour
     {
         cameraController.stop = true;
         cameraController.moveToPlanet = true;
+        if (planetUIController != null) planetUIController.TurnOn();
     }
 
     public void StopMiniGame()
@@ -131,6 +171,7 @@ public class GameController : MonoBehaviour
         cameraController.moveToPlanet = false;
         cameraController.readyToStart = true;
         cameraController.turnOnTime = Time.time + cameraController.lerpDelay;
+        if (planetUIController != null) planetUIController.TurnOff();
     }
 
     public void SetName()
@@ -140,6 +181,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Application.loadedLevelName == "Level" && player == null) player = GameObject.FindGameObjectWithTag("Player");
         //When the game over scene is loaded, turn the main camera off
         //When the setup scene is loaded, turn the main camera back on
         if (playerDead && Application.loadedLevelName == "Level")

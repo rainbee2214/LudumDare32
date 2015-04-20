@@ -14,22 +14,26 @@ public class RotateShip : MonoBehaviour
     float nextRotateTime;
     bool setValues;
 
+    public void StartOrbit()
+    {
+        rotate = true;
+    }
+
+    public void StopOrbit()
+    {
+        rotate = false;
+    }
+
     void Update()
     {
-        if (rotate)
-        {
-            if (setValues)
-            {
-                setValues = false;
-                centerLocation = GameController.controller.CurrentPlanetLocation;
-                radius = GameController.controller.CurrentPlanetRadius;
-            }
-            Rotate();
-        }
+        if (rotate) Rotate();
+        //if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.25 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.25) rotate = false;
     }
 
     void Rotate()
     {
+        centerLocation = GameController.controller.CurrentPlanetLocation;
+        radius = GameController.controller.CurrentPlanetRadius;
         Debug.Log("center " + centerLocation);
         position.x = Mathf.Cos(theta) * radius + centerLocation.x;
         position.y = Mathf.Sin(theta) * radius + centerLocation.y;

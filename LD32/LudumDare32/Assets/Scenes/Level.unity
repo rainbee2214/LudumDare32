@@ -206,7 +206,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418558, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431870, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
+      propertyPath: stop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431870, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
@@ -248,7 +256,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22443948, guid: e737d281318fe854496b28c1d03cbc54, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 22443948, guid: e737d281318fe854496b28c1d03cbc54, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -447,6 +455,10 @@ Prefab:
       propertyPath: planetDistance
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 11487694, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
   m_IsPrefabParent: 0
@@ -467,6 +479,21 @@ BoxCollider2D:
   m_Offset: {x: -.00059056282, y: 0}
   serializedVersion: 2
   m_Size: {x: .989758849, y: .75}
+--- !u!114 &1284852366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1284852357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325f802194c4e1144b9be55aa7481cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate: 0
+  centerLocation: {x: 0, y: 0}
+  radius: 1
+  rotateDelay: .00499999989
 --- !u!1001 &1416172412
 Prefab:
   m_ObjectHideFlags: 0
@@ -504,7 +531,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478700, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11440136, guid: bd34f670c8739a44a8863eb3d7712f81, type: 2}
       propertyPath: currentShipType
