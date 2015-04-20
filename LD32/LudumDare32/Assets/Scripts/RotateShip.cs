@@ -39,7 +39,6 @@ public class RotateShip : MonoBehaviour
         position.y = Mathf.Sin(theta) * radius + centerLocation.y;
         theta += rotateDelay;
         if (theta >= Mathf.PI * 2) theta = 0;
-        Debug.Log(position);
         transform.position = position;
         nextRotateTime = Time.time + rotateDelay;
 

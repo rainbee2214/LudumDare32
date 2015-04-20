@@ -14,6 +14,8 @@ public class Planet : MonoBehaviour
     float nextEmitTime;
     float emitDelay = 0.5f;
 
+    public string currentName;
+
     void Awake()
     {
         //Get the planet radius from the collider
@@ -120,15 +122,16 @@ public class Planet : MonoBehaviour
 
     public void StartMiniGame()
     {
-        Debug.Log("Start game!");
         //Set the planet location that was touched
+        //Set the camera starting position (to go back to after the mini game)
+        //Start planet mining game over planet.
+
         GameController.controller.CurrentPlanetLocation = transform.position;
         GameController.controller.CurrentPlanetRadius = radius/50f + 0.25f; //for a ship buffer
-        //Set the camera starting position (to go back to after the mini game)
         GameController.controller.StartingLocation = Camera.main.transform.position;
         GameController.controller.StartMiniGame();
         GameController.controller.player.GetComponent<RotateShip>().StartOrbit();
-        //Start planet mining game over planet.
+        GameController.controller.UpdateCurrentPlanetResources(currentName, crystals, organics, metals, people, junk);
         playingGame = true;
         nextEmitTime = Time.time;
     }
@@ -211,6 +214,7 @@ public class Planet : MonoBehaviour
                             }
                     }
                 }
+                GameController.controller.UpdateCurrentPlanetResources(currentName, crystals, organics, metals, people, junk);
                 nextEmitTime = Time.time + emitDelay;
             }
             else

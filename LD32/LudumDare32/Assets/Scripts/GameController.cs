@@ -211,4 +211,15 @@ public class GameController : MonoBehaviour
         if  (uiController != null) uiController.UpdateResources(crystals, organics, metals, people, junk);
 
     }
+
+
+    public void UpdateCurrentPlanetResources(string planetName, int cc, int oc, int mc, int pc, int jc)
+    {
+        currentPlanetName = planetName;
+        currentPlanetCrystals = cc;
+        currentPlanetJunk = jc;
+        currentPlanetMetals = mc;
+        currentPlanetOrganics = oc;
+        currentPlanetPeople = pc;
+    }
 }

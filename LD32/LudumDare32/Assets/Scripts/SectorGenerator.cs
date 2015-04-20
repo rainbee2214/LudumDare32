@@ -91,7 +91,7 @@ public class SectorGenerator : MonoBehaviour
             currentPlanets.Add(Instantiate(planets[Random.Range(0, planets.Count)], planetPos, Quaternion.identity) as GameObject);
             currentPlanets[currentPlanets.Count - 1].name = "Planet" + (i + 1);
             currentPlanets[currentPlanets.Count - 1].transform.SetParent(transform);
-            //currentPlanets[currentPlanets.Count - 1].GetComponent<Planet>.currentName = planetNames[i];
+            currentPlanets[currentPlanets.Count - 1].GetComponent<Planet>().currentName = planetNames[i];
         }
     }
 
