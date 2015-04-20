@@ -34,7 +34,6 @@ public class RotateShip : MonoBehaviour
     {
         centerLocation = GameController.controller.CurrentPlanetLocation;
         radius = GameController.controller.CurrentPlanetRadius;
-        Debug.Log("center " + centerLocation);
         position.x = Mathf.Cos(theta) * radius + centerLocation.x;
         position.y = Mathf.Sin(theta) * radius + centerLocation.y;
         theta += rotateDelay;
