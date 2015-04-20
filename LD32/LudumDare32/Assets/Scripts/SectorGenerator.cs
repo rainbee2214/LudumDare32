@@ -83,10 +83,10 @@ public class SectorGenerator : MonoBehaviour
         GetPlanets();
         currentPlanets = new List<GameObject>();
         Vector3 planetPos;
-        for (int i = 0; i < numPlanets; i++)
+        for (int i = 1; i < numPlanets; i++)
         {
             planetPos = new Vector3(planetDistance * i, 0, 0);
-            //planetPos.x += Random.Range(-planetVariance, +planetVariance);
+            planetPos.x += Random.Range(-planetVariance/2f, +planetVariance/2f);
             planetPos.y += Random.Range(-planetVariance, +planetVariance);
             currentPlanets.Add(Instantiate(planets[Random.Range(0, planets.Count)], planetPos, Quaternion.identity) as GameObject);
             currentPlanets[currentPlanets.Count - 1].name = "Planet" + (i + 1);

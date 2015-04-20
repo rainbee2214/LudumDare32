@@ -13,6 +13,7 @@ public class RotateShip : MonoBehaviour
     Vector2 position;
     float nextRotateTime;
     bool setValues;
+    float shipOffset = 0.6f;
 
     public void StartOrbit()
     {
@@ -27,7 +28,6 @@ public class RotateShip : MonoBehaviour
     void Update()
     {
         if (rotate) Rotate();
-        //if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.25 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.25) rotate = false;
     }
 
     void Rotate()
