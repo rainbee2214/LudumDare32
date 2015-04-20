@@ -188,7 +188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &156244
 GameObject:
   m_ObjectHideFlags: 1
@@ -360,12 +360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0586e2a2f00e72147a0e50802e6f6319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
-  crystalText: {fileID: 0}
-  organicText: {fileID: 0}
-  metalText: {fileID: 0}
-  peopleText: {fileID: 0}
-  junkText: {fileID: 0}
+  panel: {fileID: 154874}
+  planetNameText: {fileID: 11401980}
+  crystalText: {fileID: 11442196}
+  organicText: {fileID: 11476418}
+  metalText: {fileID: 11473012}
+  peopleText: {fileID: 11453848}
+  junkText: {fileID: 11461354}
 --- !u!114 &11442196
 MonoBehaviour:
   m_ObjectHideFlags: 1

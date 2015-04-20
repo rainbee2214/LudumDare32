@@ -36,7 +36,7 @@ public class CurrentPlanetUIController : MonoBehaviour
     {
         if (isActive)
         {
-            //planetNameText.text = GameController.controller.currentPlanetName;
+            planetNameText.text = GameController.controller.CurrentPlanetName;
             crystalText.text = FormatText(GameController.controller.CurrentPlanetCrystals);
             organicText.text = FormatText(GameController.controller.CurrentPlanetOrganics);
             metalText.text = FormatText(GameController.controller.CurrentPlanetMetals);

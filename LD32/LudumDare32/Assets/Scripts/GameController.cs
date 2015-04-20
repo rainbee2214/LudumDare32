@@ -87,6 +87,13 @@ public class GameController : MonoBehaviour
         set { playerDead = value; }
     }
 
+    string currentPlanetName = "";
+    public string CurrentPlanetName
+    {
+        get { return currentPlanetName; }
+        set { currentPlanetName = value; }
+    }
+
     int currentPlanetCrystals = 0;
     public int CurrentPlanetCrystals
     {
