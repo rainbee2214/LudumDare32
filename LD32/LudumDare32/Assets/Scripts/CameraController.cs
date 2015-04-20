@@ -19,6 +19,8 @@ public class CameraController : MonoBehaviour
     public float lerpDelay = 0.8f;
     public bool readyToStart = false;
 
+    bool shieldDown = false;
+
 	void Update ()
     {
         if (readyToStart && Time.time > turnOnTime)
@@ -55,11 +57,23 @@ public class CameraController : MonoBehaviour
                 }
 
             }
-            else //Move Normally
+            else //Player alive
             {
-                position = transform.position;
-                position.x += Time.deltaTime * speed;
-                transform.position = position;
+                if (shieldDown) //Shield damage, lerp to damage site
+                {
+                    transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed * 5) / journeyLength);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                    if (transform.position.x == playerDeathPos.x)
+                    {
+                        shieldDown = false;
+                    }
+                }
+                else //Move Normally
+                {
+                    position = transform.position;
+                    position.x += Time.deltaTime * speed;
+                    transform.position = position;
+                }
             }
         }
 	}
@@ -84,9 +98,11 @@ public class CameraController : MonoBehaviour
             if (GameController.controller.ShieldCount > 0)
             {
                 GameController.controller.ShieldCount = -1;
-                Vector3 newPos = transform.position;
-                newPos.x = collision.gameObject.transform.position.x;
-                transform.position = newPos;
+                lastCamPos = transform.position;
+                playerDeathPos = collision.gameObject.transform.position;
+                startTime = Time.time;
+                journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
+                shieldDown = true;
             }
             else
             {

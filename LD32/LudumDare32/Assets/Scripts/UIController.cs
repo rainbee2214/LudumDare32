@@ -82,9 +82,9 @@ public class UIController : MonoBehaviour
         switch (raceIndex)
         {
             case 0: raceImage.sprite = celidImage; race = "Celid"; break;
-            case 1: raceImage.sprite = awtinImage; race = "Awtin"; break;
+            case 1: raceImage.sprite = todoceImage; race = "Todoce"; break; 
             case 2: raceImage.sprite = quaitoImage; race = "Quaito"; break;
-            case 3: raceImage.sprite = todoceImage; race = "Todoce"; break;
+            case 3: raceImage.sprite = awtinImage; race = "Awtin"; break;
         }
         nameText.text = name + " the " + race + " " + GetRandomNoun();
     }
