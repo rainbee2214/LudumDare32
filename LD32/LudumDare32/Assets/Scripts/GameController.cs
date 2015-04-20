@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController controller;
 
+    public CurrentPlanetUIController planetUIController;
     public UIController uiController;
     CameraController cameraController;
     [HideInInspector]
@@ -83,6 +84,42 @@ public class GameController : MonoBehaviour
         set { playerDead = value; }
     }
 
+    int currentPlanetCrystals = 0;
+    public int CurrentPlanetCrystals
+    {
+        get { return currentPlanetCrystals; }
+        set { currentPlanetCrystals = value; }
+    }
+
+    int currentPlanetOrganics = 0;
+    public int CurrentPlanetOrganics
+    {
+        get { return currentPlanetOrganics; }
+        set { currentPlanetOrganics = value; }
+    }
+
+    int currentPlanetMetals = 0;
+    public int CurrentPlanetMetals
+    {
+        get { return currentPlanetMetals; }
+        set { currentPlanetMetals = value; }
+    }
+
+    int currentPlanetPeople = 0;
+    public int CurrentPlanetPeople
+    {
+        get { return currentPlanetPeople; }
+        set { currentPlanetPeople = value; }
+    }
+
+    int currentPlanetJunk = 0;
+    public int CurrentPlanetJunk
+    {
+        get { return currentPlanetJunk; }
+        set { currentPlanetJunk = value; }
+    }
+
+
     Vector2 currentPlanetLocation;
     public Vector2 CurrentPlanetLocation
     {
@@ -117,6 +154,7 @@ public class GameController : MonoBehaviour
     {
         cameraController.stop = true;
         cameraController.moveToPlanet = true;
+        if (planetUIController != null) planetUIController.TurnOn();
     }
 
     public void StopMiniGame()
@@ -124,6 +162,7 @@ public class GameController : MonoBehaviour
         cameraController.moveToPlanet = false;
         cameraController.readyToStart = true;
         cameraController.turnOnTime = Time.time + cameraController.lerpDelay;
+        if (planetUIController != null) planetUIController.TurnOff();
     }
 
     public void SetName()
