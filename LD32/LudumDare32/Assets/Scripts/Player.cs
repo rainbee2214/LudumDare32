@@ -82,4 +82,16 @@ public class Player : MonoBehaviour
             GameObject.Destroy(this.gameObject);
         }
     }
+
+    public float GetAngle()
+    {
+        return transform.eulerAngles.z;
+    }
+
+    public void SetAngle(float angle)
+    {
+        Vector3 a = transform.eulerAngles;
+        a.z = angle;
+        transform.eulerAngles = a;
+    }
 }

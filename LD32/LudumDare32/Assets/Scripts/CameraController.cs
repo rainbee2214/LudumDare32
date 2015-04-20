@@ -40,7 +40,6 @@ public class CameraController : MonoBehaviour
             {
                 transform.position = Vector3.Lerp(transform.position, GameController.controller.StartingLocation, Time.deltaTime * lerpSpeed);
                 transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                //When we get to the startingLocation (within a small amount), start the movement again 
             }
         }
         else
