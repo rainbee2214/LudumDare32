@@ -214,7 +214,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11431870, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
@@ -613,7 +613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11487694, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
       propertyPath: planetVariance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11487694, guid: ed9c51ae5ba35a44683cc37a3f6e4244, type: 2}
       propertyPath: planetDistance

@@ -12,7 +12,6 @@ GameObject:
   - 58: {fileID: 5819890}
   - 114: {fileID: 11408540}
   - 95: {fileID: 9546352}
-  - 58: {fileID: 5818342}
   m_Layer: 0
   m_Name: Crystals
   m_TagString: Untagged
@@ -32,19 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5818342
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123526}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: .25
 --- !u!58 &5819890
 CircleCollider2D:
   m_ObjectHideFlags: 1
