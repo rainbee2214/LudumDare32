@@ -812,11 +812,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418558, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 129916, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}
-      propertyPath: m_Name
-      value: GameController
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 679cb91c89a441b4e9f78a56061a2cb3, type: 2}

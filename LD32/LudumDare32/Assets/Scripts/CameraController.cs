@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour 
 {
+    public Animator shieldDamage;
+
     public bool stop = false;
     public float speed = 1f;
     Vector3 position;
@@ -62,9 +65,10 @@ public class CameraController : MonoBehaviour
                 if (shieldDown) //Shield damage, lerp to damage site
                 {
                     transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed * 5) / journeyLength);
-                    transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                    transform.position = new Vector3(transform.position.x, 0, -10);
                     if (transform.position.x == playerDeathPos.x)
                     {
+                        shieldDamage.SetBool("TakingDamage", false);
                         shieldDown = false;
                     }
                 }
@@ -103,6 +107,7 @@ public class CameraController : MonoBehaviour
                 startTime = Time.time;
                 journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
                 shieldDown = true;
+                shieldDamage.SetBool("TakingDamage", true);
             }
             else
             {
