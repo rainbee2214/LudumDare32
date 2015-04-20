@@ -17,6 +17,14 @@ public class GameController : MonoBehaviour
     public GameObject mainCam;
 
     #region Properties
+
+    int shieldCount = 3;
+    public int ShieldCount
+    {
+        get { return shieldCount; }
+        set { shieldCount += value; }
+    }
+
     int junk;
     public int Junk
     {
@@ -204,12 +212,16 @@ public class GameController : MonoBehaviour
         }
         else if (Application.loadedLevelName == "Setup")
         {
+            shieldCount = 3;
             playerDead = false;
             mainCam.SetActive(true);
         }
-        
-        if  (uiController != null) uiController.UpdateResources(crystals, organics, metals, people, junk);
 
+        if (uiController != null)
+        {
+            uiController.UpdateResources(crystals, organics, metals, people, junk);
+            uiController.SetShields(shieldCount);
+        }
     }
 
 
