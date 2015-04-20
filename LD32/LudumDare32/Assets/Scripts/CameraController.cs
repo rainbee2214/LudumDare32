@@ -81,13 +81,23 @@ public class CameraController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && Application.loadedLevelName == "Level")
         {
-            collision.gameObject.GetComponent<Player>().Explode();
-            lastCamPos = transform.position;
-            playerDeathPos = collision.gameObject.transform.position;
-            startTime = Time.time;
-            journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
-            playerDead = true;
-            Debug.Log("Setting true in camera controller on scene " + Application.loadedLevelName);
+            if (GameController.controller.ShieldCount > 0)
+            {
+                GameController.controller.ShieldCount = -1;
+                Vector3 newPos = transform.position;
+                newPos.x = collision.gameObject.transform.position.x;
+                transform.position = newPos;
+            }
+            else
+            {
+                collision.gameObject.GetComponent<Player>().Explode();
+                lastCamPos = transform.position;
+                playerDeathPos = collision.gameObject.transform.position;
+                startTime = Time.time;
+                journeyLength = Vector3.Distance(lastCamPos, playerDeathPos);
+                playerDead = true;
+                Debug.Log("Setting true in camera controller on scene " + Application.loadedLevelName);
+            }
         }
     }
 }
