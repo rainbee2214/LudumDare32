@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Resource : MonoBehaviour
 {
-    public string stateName = "Fullsize";
     public bool restart;
 
+    bool clicked;
     bool shrink;
     Animator anim;
 
@@ -26,12 +26,13 @@ public class Resource : MonoBehaviour
             restart = false;
             Restart();
         }
+        
         if (shrink && Time.time > shrinkTime)
         {
             shrink = false;
             anim.SetTrigger("Shrink");
         }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName(stateName) && !shrink)
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Fullsize") && !shrink)
         {
             shrink = true;
             shrinkTime = Time.time + delay + Random.Range(-delta, delta);
@@ -39,6 +40,13 @@ public class Resource : MonoBehaviour
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Invisible"))
         {
             anim.ResetTrigger("Shrink");
+            anim.ResetTrigger("Clicked");
+            clicked = false;
+        }
+        else if (clicked)
+        {
+            anim.SetTrigger("Clicked");
+            clicked = false;
         }
 
 
@@ -51,7 +59,6 @@ public class Resource : MonoBehaviour
 
     void OnMouseDown()
     {
-        //Debug.Log("Collecting " + gameObject.name);
         switch(gameObject.name.Substring(0,4))
         {
             case "Crys": GameController.controller.Crystals = 1; break;
@@ -60,6 +67,6 @@ public class Resource : MonoBehaviour
             case "Peop": GameController.controller.People = 1; break;
             case "Junk": GameController.controller.Junk = 1; break;
         }
-        anim.SetTrigger("Clicked");
+        clicked = true;
     }
 }

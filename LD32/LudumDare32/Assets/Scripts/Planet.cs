@@ -140,8 +140,8 @@ public class Planet : MonoBehaviour
     {
         float x = transform.position.x, y = transform.position.y;
         float r = radius / 120f;
-        x += (Random.Range(-r, r));
-        y += (Random.Range(-r, r));
+        x += ((Random.Range(-r, r)+0.001f)*2);
+        y += ((Random.Range(-r, r)+0.001f)*2);
         return new Vector2(x,y);
     }
 
