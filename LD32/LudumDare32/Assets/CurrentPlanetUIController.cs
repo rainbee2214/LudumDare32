@@ -6,7 +6,8 @@ public class CurrentPlanetUIController : MonoBehaviour
 {
     public GameObject panel;
 
-    public Text crystalText,
+    public Text planetNameText,
+                crystalText,
                 organicText,
                 metalText,
                 peopleText,
@@ -16,11 +17,13 @@ public class CurrentPlanetUIController : MonoBehaviour
 
     public void TurnOn()
     {
+        isActive = true;
         panel.SetActive(true);
     }
 
     public void TurnOff()
     {
+        isActive = false;
         panel.SetActive(false);
     }
 
@@ -33,6 +36,7 @@ public class CurrentPlanetUIController : MonoBehaviour
     {
         if (isActive)
         {
+            //planetNameText.text = GameController.controller.currentPlanetName;
             crystalText.text = FormatText(GameController.controller.CurrentPlanetCrystals);
             organicText.text = FormatText(GameController.controller.CurrentPlanetOrganics);
             metalText.text = FormatText(GameController.controller.CurrentPlanetMetals);

@@ -12,8 +12,74 @@ public class SectorGenerator : MonoBehaviour
 
     public List<GameObject> currentPlanets;
 
+    List<string> planetNames;
+
+    string[] names = { 
+                        "Moexd 125",
+                        "Ymsn",
+                        "D-Umoyr",
+                        "Yapuv",
+                        "Eyrzocuif",
+                        "Dien",
+                        "Siuzra",
+                        "Mul-cy",
+                        "Tsdhox",
+                        "Yokeycy",
+                        "Ueoeeex",
+                        "Ejfmy-i",
+                        "Xdnaiia",
+                        "E-Hciyia",
+                        "Oi-Alfo",
+                        "Tcroo 141",
+                        "Nyfaahk",
+                        "Upvb",
+                        "Uo-uqjszaxo 310",
+                        "Oye-Ut",
+                        "Mbekqtigigy",
+                        "Ru-Ro 151",
+                        "Pbloey",
+                        "Aaaxuadave 545",
+                        "Noeihabiee 235",
+                        "Osrpgkginy",
+                        "Ogiqiooa",
+                        "Byryo",
+                        "Dklmli",
+                        "El-Kl",
+                        "Uuecoz",
+                        "Efyooy",
+                        "Kxic 147",
+                        "Ae-Ne",
+                        "Oeunlz 86",
+                        "Gyskevigum",
+                        "Oouuta-b",
+                        "Uaier",
+                        "Omsap",
+                        "Eyhnox",
+                        "Oxia",
+                        "Yvuyj 122",
+                        "Iiu-Ugepdy",
+                        "Iooeyvuu 50",
+                        "Nueiyud",
+                        "Arduu",
+                        "Beui",
+                        "Aq-Kciaa",
+                        "Ratoapa",
+                        "Gecbu 358"    
+                     };
+
+
     void Start()
     {
+        //Setup planet names and shuffle
+        planetNames = new List<string>(names);
+        for (int i = 0; i < planetNames.Count; i++)
+        {
+            string temp = planetNames[i];
+            int randomIndex = Random.Range(i, planetNames.Count);
+            planetNames[i] = planetNames[randomIndex];
+            planetNames[randomIndex] = temp;
+        }
+
         GetPlanets();
         currentPlanets = new List<GameObject>();
         Vector3 planetPos;
@@ -25,7 +91,7 @@ public class SectorGenerator : MonoBehaviour
             currentPlanets.Add(Instantiate(planets[Random.Range(0, planets.Count)], planetPos, Quaternion.identity) as GameObject);
             currentPlanets[currentPlanets.Count - 1].name = "Planet" + (i + 1);
             currentPlanets[currentPlanets.Count - 1].transform.SetParent(transform);
-        
+            //currentPlanets[currentPlanets.Count - 1].GetComponent<Planet>.currentName = planetNames[i];
         }
     }
 
@@ -40,7 +106,7 @@ public class SectorGenerator : MonoBehaviour
         int i = 1;
         while (i <= 50)
         {
-            planets.Add(Resources.Load("Assets/Prefabs/Planets/Planet"+i++, typeof(GameObject)) as GameObject);
+            planets.Add(Resources.Load("Assets/Prefabs/Planets/Planet" + i++, typeof(GameObject)) as GameObject);
         }
     }
 }
