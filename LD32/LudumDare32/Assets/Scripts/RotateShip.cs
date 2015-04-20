@@ -13,7 +13,6 @@ public class RotateShip : MonoBehaviour
     Vector2 position;
     float nextRotateTime;
     bool setValues;
-    float shipOffset = 0.6f;
 
     public void StartOrbit()
     {

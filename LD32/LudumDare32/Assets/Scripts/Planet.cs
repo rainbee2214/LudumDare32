@@ -13,6 +13,7 @@ public class Planet : MonoBehaviour
     bool playingGame = false;
     float nextEmitTime;
     float emitDelay = 0.5f;
+    float shipOffset = 0.6f;
 
     public string currentName;
 
@@ -84,7 +85,7 @@ public class Planet : MonoBehaviour
         //Each planet, based on it's radius, will have a max quota of resources
         junk = 0; organics = 0; metals = 0; crystals = 0; people = 0;
         int count = 0;
-        while (count < radius)
+        while (count < radius/5)
         {
             switch (Random.Range(0, 500) % 10)
             {
@@ -122,15 +123,13 @@ public class Planet : MonoBehaviour
 
     public void StartMiniGame()
     {
-        //Set the planet location that was touched
-        //Set the camera starting position (to go back to after the mini game)
-        //Start planet mining game over planet.
-
         GameController.controller.CurrentPlanetLocation = transform.position;
-        GameController.controller.CurrentPlanetRadius = radius/50f + 0.25f; //for a ship buffer
+        GameController.controller.CurrentPlanetRadius = radius / 50f + shipOffset; //for a ship buffer
         GameController.controller.StartingLocation = Camera.main.transform.position;
         GameController.controller.StartMiniGame();
         GameController.controller.player.GetComponent<RotateShip>().StartOrbit();
+        GameController.controller.PlayerLocationBefore = GameController.controller.player.transform.position;
+        GameController.controller.PlayerAngleBefore = GameController.controller.player.GetComponent<Player>().GetAngle();
         GameController.controller.UpdateCurrentPlanetResources(currentName, crystals, organics, metals, people, junk);
         playingGame = true;
         nextEmitTime = Time.time;
@@ -229,8 +228,11 @@ public class Planet : MonoBehaviour
 
     public void StopMiniGame()
     {
+        Destroy(GetComponent<CircleCollider2D>());
         GameController.controller.StopMiniGame();
         GameController.controller.player.GetComponent<RotateShip>().StopOrbit();
+        GameController.controller.player.transform.position = GameController.controller.PlayerLocationBefore;
+        GameController.controller.player.GetComponent<Player>().SetAngle(GameController.controller.PlayerAngleBefore);
         playingGame = false;
     }
 
