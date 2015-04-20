@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
     public CurrentPlanetUIController planetUIController;
     public UIController uiController;
     CameraController cameraController;
+    //[HideInInspector]
+    public GameObject player;
+
     [HideInInspector]
     public MiniGameController miniGameController;
 
@@ -119,6 +122,12 @@ public class GameController : MonoBehaviour
         set { currentPlanetJunk = value; }
     }
 
+    float currentPlanetRadius;
+    public float CurrentPlanetRadius
+    {
+        get { return currentPlanetRadius; }
+        set { currentPlanetRadius = value; }
+    }
 
     Vector2 currentPlanetLocation;
     public Vector2 CurrentPlanetLocation
@@ -172,6 +181,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Application.loadedLevelName == "Level" && player == null) player = GameObject.FindGameObjectWithTag("Player");
         //When the game over scene is loaded, turn the main camera off
         //When the setup scene is loaded, turn the main camera back on
         if (playerDead && Application.loadedLevelName == "Level")
