@@ -83,6 +83,13 @@ public class GameController : MonoBehaviour
         set { playerDead = value; }
     }
 
+    int currentPlanetRadius;
+    public int CurrentPlanetRadius
+    {
+        get { return currentPlanetRadius; }
+        set { currentPlanetRadius = value; }
+    }
+
     Vector2 currentPlanetLocation;
     public Vector2 CurrentPlanetLocation
     {
