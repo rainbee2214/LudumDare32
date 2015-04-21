@@ -24,6 +24,14 @@ public class CameraController : MonoBehaviour
 
     bool shieldDown = false;
 
+    void Start ()
+    {
+        stop = false;
+        playerDead = false;
+        moveToPlanet = false;
+        readyToStart = false;
+    }
+
 	void Update ()
     {
         if (readyToStart && Time.time > turnOnTime)

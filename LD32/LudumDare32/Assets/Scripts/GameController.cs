@@ -222,6 +222,7 @@ public class GameController : MonoBehaviour
         if (Application.loadedLevelName == "GameOver")
         {
             mainCam.SetActive(false);
+            Destroy(this);
         }
         else if (Application.loadedLevelName == "Setup")
         {
