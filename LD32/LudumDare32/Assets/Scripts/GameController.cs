@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public CurrentPlanetUIController planetUIController;
     public UIController uiController;
     CameraController cameraController;
+    //[HideInInspector]
     public GameObject player;
 
     [HideInInspector]
@@ -155,20 +156,6 @@ public class GameController : MonoBehaviour
     {
         get { return startingLocation; }
         set { startingLocation = value; }
-    }
-
-    float playerAngleBefore;
-    public float PlayerAngleBefore
-    {
-        get { return playerAngleBefore; }
-        set { playerAngleBefore = value; }
-    }
-
-    Vector2 playerLocationBefore;
-    public Vector2 PlayerLocationBefore
-    {
-        get { return playerLocationBefore; }
-        set { playerLocationBefore = value; }
     }
     #endregion
 
