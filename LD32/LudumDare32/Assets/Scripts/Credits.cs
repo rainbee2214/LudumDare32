@@ -20,7 +20,7 @@ public class Credits : MonoBehaviour
         lines[1] = "\n";
         lines[2] = " Theme: Unconventional Weapon\n";
         lines[3] = "\n";
-        lines[4] = " April 17th-19th\n";
+        lines[4] = " April 17th-19th, 2015\n";
         lines[5] = "\n";
         lines[6] = "\n";
         lines[7] = " Sarah & Joel\n";

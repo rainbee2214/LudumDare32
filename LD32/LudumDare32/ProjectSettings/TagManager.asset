@@ -8,6 +8,16 @@ TagManager:
   - HackingGameController
   - HackingText
   - DefenseText
+  - CrystalsText
+  - OrganicsText
+  - MetalsText
+  - PeopleText
+  - JunkText
+  - NameText
+  - RaceImage
+  - Shield1
+  - Shield2
+  - Shield3
   layers:
   - Default
   - TransparentFX

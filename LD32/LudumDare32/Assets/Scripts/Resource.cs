@@ -17,9 +17,13 @@ public class Resource : MonoBehaviour
 
     void Awake()
     {
-        if (Application.loadedLevelName == "Level") mgc =GameObject.FindGameObjectWithTag("MiniGameController").GetComponent<MiniGameController>();
         delta = delay / 2f;
         anim = GetComponent<Animator>();
+    }
+
+    void GetMGC()
+    {
+        mgc = GameObject.FindGameObjectWithTag("MiniGameController").GetComponent<MiniGameController>();
     }
 
     void Update()
@@ -45,6 +49,7 @@ public class Resource : MonoBehaviour
 
     public void Restart()
     {
+        if (anim == null) anim = GetComponent<Animator>();
         anim.SetTrigger("Restart");
     }
 
@@ -64,6 +69,7 @@ public class Resource : MonoBehaviour
             case "Defe": GameController.controller.DefenseComputers = 1; r = 6; break;
         }
         clicked = true;
-        if (r <= 4) mgc.PlaySound(r);
+        if (mgc == null) GetMGC();
+        mgc.PlaySound(r);
     }
 }

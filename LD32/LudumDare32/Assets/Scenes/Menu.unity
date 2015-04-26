@@ -2324,6 +2324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480d6948a8615d48ac20895ebc1e960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldDamage: {fileID: 0}
   stop: 0
   speed: 1
   moveToPlanet: 0

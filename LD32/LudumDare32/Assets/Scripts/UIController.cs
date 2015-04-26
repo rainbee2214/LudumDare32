@@ -19,10 +19,10 @@ public class UIController : MonoBehaviour
                 hackingText,
                 defenseText;
 
-    public Sprite awtinImage,
-                  celidImage,
-                  todoceImage,
-                  quaitoImage;
+    Sprite awtinImage,
+           celidImage,
+           todoceImage,
+           quaitoImage;
 
     string[] nouns = {
                          "Explorer",
@@ -63,14 +63,25 @@ public class UIController : MonoBehaviour
                          "Captain"
                      };
 
+    bool setName = true;
+
     void Start()
     {
         GameController.controller.uiController = this;
-        GameController.controller.SetName();
+    }
+
+    void Update()
+    {
+        if (setName && Application.loadedLevelName == "Level") GameController.controller.SetName();
     }
 
     public void UpdateResources(int crystalCount, int organicCount, int metalCount, int peopleCount, int junkCount)
     {
+        if (crystalText == null) crystalText = GameObject.FindGameObjectWithTag("CrystalsText").GetComponent<Text>();
+        if (organicText == null) organicText = GameObject.FindGameObjectWithTag("OrganicsText").GetComponent<Text>();
+        if (metalText == null) metalText = GameObject.FindGameObjectWithTag("MetalsText").GetComponent<Text>();
+        if (peopleText == null) peopleText = GameObject.FindGameObjectWithTag("PeopleText").GetComponent<Text>();
+        if (junkText == null) junkText = GameObject.FindGameObjectWithTag("JunkText").GetComponent<Text>();
         crystalText.text = GetFormattedString(crystalCount);
         organicText.text = GetFormattedString(organicCount);
         metalText.text = GetFormattedString(metalCount);
@@ -88,6 +99,8 @@ public class UIController : MonoBehaviour
 
     public void SetName(int raceIndex, string name)
     {
+        if (celidImage == null) GetAlienSprites();
+        setName = false;
         string race = "";
         switch (raceIndex)
         {
@@ -96,11 +109,13 @@ public class UIController : MonoBehaviour
             case 2: raceImage.sprite = quaitoImage; race = "Quaito"; break;
             case 3: raceImage.sprite = awtinImage; race = "Awtin"; break;
         }
+        if (nameText == null) nameText = GameObject.FindGameObjectWithTag("NameText").GetComponent<Text>();
         nameText.text = name + " the " + race + " " + GetRandomNoun();
     }
 
     public void SetShields(int count)
     {
+        if (shield1 == null) GetShieldSprites();
         switch (count)
         {
             case 0:
@@ -148,5 +163,23 @@ public class UIController : MonoBehaviour
         else if (count >= 100 && count < 1000) s = "x0" + count;
         else s = "x" + count;
         return s;
+    }
+
+    void GetAlienSprites()
+    {
+        raceImage = GameObject.FindGameObjectWithTag("RaceImage").GetComponent<Image>();
+        awtinImage = Resources.Load("Assets/Sprites/Aliens/alienGreen_badge2", typeof(Sprite)) as Sprite;
+        celidImage = Resources.Load("Assets/Sprites/Aliens/alienBlue_badge2", typeof(Sprite)) as Sprite;
+        todoceImage = Resources.Load("Assets/Sprites/Aliens/alienYellow_badge2", typeof(Sprite)) as Sprite;
+        quaitoImage = Resources.Load("Assets/Sprites/Aliens/alienPink_badge2", typeof(Sprite)) as Sprite;
+    }
+
+    void GetShieldSprites()
+    {
+        Sprite shieldImage = Resources.Load("Assets/Sprites/UI/shield_silver", typeof(Sprite)) as Sprite;
+        shield1 = GameObject.FindGameObjectWithTag("Shield1").GetComponent<Image>();
+        shield2 = GameObject.FindGameObjectWithTag("Shield2").GetComponent<Image>();
+        shield3 = GameObject.FindGameObjectWithTag("Shield3").GetComponent<Image>();
+    
     }
 }

@@ -13,12 +13,22 @@ public class HackingResource : Resource
 
     void Update()
     {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Invisible"))
+        {
+            anim.ResetTrigger("Clicked");
+            clicked = false;
+        }
 
+        if (clicked)
+        {
+            anim.SetTrigger("Clicked");
+            clicked = false;
+        }
     }
 
     void OnMouseDown()
     {
-        Debug.Log("Hacking resource");
+        //Debug.Log("Hacking resource");
 
         int r = 0;
         switch (gameObject.name.Substring(0, 4))
@@ -29,4 +39,5 @@ public class HackingResource : Resource
         clicked = true;
         hackingGameController.PlaySound(r);
     }
+    
 }
