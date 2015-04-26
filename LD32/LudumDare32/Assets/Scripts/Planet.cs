@@ -84,7 +84,7 @@ public class Planet : MonoBehaviour
         //Each planet, based on it's radius, will have a max quota of resources
         junk = 0; organics = 0; metals = 0; crystals = 0; people = 0;
         int count = 0;
-        while (count < radius)
+        while (count < radius/5)
         {
             switch (Random.Range(0, 500) % 10)
             {

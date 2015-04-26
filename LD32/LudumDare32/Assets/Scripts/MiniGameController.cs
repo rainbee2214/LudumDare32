@@ -12,13 +12,40 @@ public class MiniGameController : MonoBehaviour
     public List<GameObject> peoplePool;
     public List<GameObject> junkPool;
 
+    AudioClip mineCrystalsSound, mineOrganicsSound, mineMetalsSound, minePeopleSound, mineJunkSound;
+    AudioSource audioSource;
+
     int topCrystal, topOrganics, topMetals, topPeople, topJunk;
 
     void Awake()
     {
         GetResources();
+        GetSounds();
     }
     
+    void GetSounds()
+    {
+        mineCrystalsSound = Resources.Load("Assets/Audio/MineCrystalsSound", typeof(AudioClip)) as AudioClip;
+        mineOrganicsSound = Resources.Load("Assets/Audio/MineOrganicsSound", typeof(AudioClip)) as AudioClip;
+        mineMetalsSound = Resources.Load("Assets/Audio/MineMetalsSound", typeof(AudioClip)) as AudioClip;
+        minePeopleSound = Resources.Load("Assets/Audio/MinePeopleSound", typeof(AudioClip)) as AudioClip;
+        mineJunkSound = Resources.Load("Assets/Audio/MineJunkSound", typeof(AudioClip)) as AudioClip;
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySound(int resource = 0)
+    {
+        Debug.Log("Playing sound.");
+        switch(resource)
+        {
+            case 0: audioSource.PlayOneShot(mineCrystalsSound, 2f); break;
+            case 1: audioSource.PlayOneShot(mineOrganicsSound, 2f); break;
+            case 2: audioSource.PlayOneShot(mineMetalsSound, 2f); break;
+            case 3: audioSource.PlayOneShot(minePeopleSound, 2f); break;
+            case 4: audioSource.PlayOneShot(mineJunkSound, 2f); break;
+        }
+    }
+
     public void StartResource(string resourceType, Vector2 location)
     {
         switch (resourceType)

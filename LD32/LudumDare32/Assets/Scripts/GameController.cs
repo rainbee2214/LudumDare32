@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
 
     public GameObject mainCam;
 
+    bool turnCameraOff = true;
+
     #region Properties
 
     int shieldCount = 3;
@@ -170,6 +172,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(player);
         cameraController = mainCam.GetComponent<CameraController>();
         miniGameController = GetComponentInChildren<MiniGameController>();
     }
@@ -197,6 +200,14 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if (Application.loadedLevelName == "Level" && player == null) player = GameObject.FindGameObjectWithTag("Player");
+        
+        if (Application.loadedLevelName == "HackLevel" && turnCameraOff)
+        {
+            player.transform.position = Vector2.zero;
+            cameraController.stop = true;
+            turnCameraOff = false;
+        }
+
         //When the game over scene is loaded, turn the main camera off
         //When the setup scene is loaded, turn the main camera back on
         if (playerDead && Application.loadedLevelName == "Level")

@@ -13,8 +13,11 @@ public class Resource : MonoBehaviour
     float delay = 2f;
     float delta;
 
+    MiniGameController mgc;
+
     void Awake()
     {
+        mgc =GameObject.FindGameObjectWithTag("MiniGameController").GetComponent<MiniGameController>();
         delta = delay / 2f;
         anim = GetComponent<Animator>();
     }
@@ -27,29 +30,17 @@ public class Resource : MonoBehaviour
             Restart();
         }
         
-        if (shrink && Time.time > shrinkTime)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Invisible"))
         {
-            shrink = false;
-            anim.SetTrigger("Shrink");
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Fullsize") && !shrink)
-        {
-            shrink = true;
-            shrinkTime = Time.time + delay + Random.Range(-delta, delta);
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Invisible"))
-        {
-            anim.ResetTrigger("Shrink");
             anim.ResetTrigger("Clicked");
             clicked = false;
         }
-        else if (clicked)
+
+        if (clicked)
         {
             anim.SetTrigger("Clicked");
             clicked = false;
         }
-
-
     }
 
     public void Restart()
@@ -59,14 +50,16 @@ public class Resource : MonoBehaviour
 
     void OnMouseDown()
     {
-        switch(gameObject.name.Substring(0,4))
+        int r = 0;
+        switch (gameObject.name.Substring(0, 4))
         {
-            case "Crys": GameController.controller.Crystals = 1; break;
-            case "Orga": GameController.controller.Organics = 1; break;
-            case "Meta": GameController.controller.Metals = 1; break;
-            case "Peop": GameController.controller.People = 1; break;
-            case "Junk": GameController.controller.Junk = 1; break;
+            case "Crys": GameController.controller.Crystals = 1; r = 0; break;
+            case "Orga": GameController.controller.Organics = 1; r = 1; break;
+            case "Meta": GameController.controller.Metals = 1; r = 2; break;
+            case "Peop": GameController.controller.People = 1; r = 3; break;
+            case "Junk": GameController.controller.Junk = 1; r = 4; break;
         }
         clicked = true;
+        mgc.PlaySound(r);
     }
 }
