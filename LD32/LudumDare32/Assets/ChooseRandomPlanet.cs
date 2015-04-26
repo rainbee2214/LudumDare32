@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HackingGame : MonoBehaviour {
+public class ChooseRandomPlanet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

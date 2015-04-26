@@ -5,19 +5,19 @@ public class Resource : MonoBehaviour
 {
     public bool restart;
 
-    bool clicked;
-    bool shrink;
-    Animator anim;
+    protected bool clicked;
+    protected bool shrink;
+    protected Animator anim;
 
-    float shrinkTime;
-    float delay = 2f;
-    float delta;
+    protected float shrinkTime;
+    protected float delay = 2f;
+    protected float delta;
 
     MiniGameController mgc;
 
     void Awake()
     {
-        mgc =GameObject.FindGameObjectWithTag("MiniGameController").GetComponent<MiniGameController>();
+        if (Application.loadedLevelName == "Level") mgc =GameObject.FindGameObjectWithTag("MiniGameController").GetComponent<MiniGameController>();
         delta = delay / 2f;
         anim = GetComponent<Animator>();
     }
@@ -50,6 +50,8 @@ public class Resource : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log("Resource");
+
         int r = 0;
         switch (gameObject.name.Substring(0, 4))
         {
@@ -58,8 +60,10 @@ public class Resource : MonoBehaviour
             case "Meta": GameController.controller.Metals = 1; r = 2; break;
             case "Peop": GameController.controller.People = 1; r = 3; break;
             case "Junk": GameController.controller.Junk = 1; r = 4; break;
+            case "Hack": GameController.controller.HackingComputers = 1; r = 5; break;
+            case "Defe": GameController.controller.DefenseComputers = 1; r = 6; break;
         }
         clicked = true;
-        mgc.PlaySound(r);
+        if (r <= 4) mgc.PlaySound(r);
     }
 }

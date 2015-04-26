@@ -34,57 +34,64 @@ public class CameraController : MonoBehaviour
 
 	void Update ()
     {
-        if (readyToStart && Time.time > turnOnTime)
+        if (Application.loadedLevelName == "HackLevel")
         {
-            stop = false;
-            readyToStart = false;
-        }
-        if (stop)
-        {
-            if (moveToPlanet) //Lerp to the planet position
-            {
-                //Debug.Log("Moving to planet.");
-                transform.position = Vector3.Lerp(transform.position, GameController.controller.CurrentPlanetLocation, Time.deltaTime * lerpSpeed);
-                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-            }
-            else //Still stopped but not moving towards the planet, lerp to the old position that we started at
-            {
-                transform.position = Vector3.Lerp(transform.position, GameController.controller.StartingLocation, Time.deltaTime * lerpSpeed);
-                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                //When we get to the startingLocation (within a small amount), start the movement again 
-            }
+            transform.position = new Vector3(0f, 0f, -10f);
         }
         else
         {
-            if (playerDead) //Lerp to death site, lock at z of -10
+            if (readyToStart && Time.time > turnOnTime)
             {
-                transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed*2) / journeyLength);
-                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-                //If camera has reached the death site, set the playerDead in gameController
-                if (transform.position.x == playerDeathPos.x)
-                {
-                    playerDead = false;
-                    GameController.controller.PlayerDead = true;
-                }
-
+                stop = false;
+                readyToStart = false;
             }
-            else //Player alive
+            if (stop)
             {
-                if (shieldDown) //Shield damage, lerp to damage site
+                if (moveToPlanet) //Lerp to the planet position
                 {
-                    transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed * 5) / journeyLength);
-                    transform.position = new Vector3(transform.position.x, 0, -10);
+                    //Debug.Log("Moving to planet.");
+                    transform.position = Vector3.Lerp(transform.position, GameController.controller.CurrentPlanetLocation, Time.deltaTime * lerpSpeed);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                }
+                else //Still stopped but not moving towards the planet, lerp to the old position that we started at
+                {
+                    transform.position = Vector3.Lerp(transform.position, GameController.controller.StartingLocation, Time.deltaTime * lerpSpeed);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                    //When we get to the startingLocation (within a small amount), start the movement again 
+                }
+            }
+            else
+            {
+                if (playerDead) //Lerp to death site, lock at z of -10
+                {
+                    transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed*2) / journeyLength);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                    //If camera has reached the death site, set the playerDead in gameController
                     if (transform.position.x == playerDeathPos.x)
                     {
-                        shieldDamage.SetBool("TakingDamage", false);
-                        shieldDown = false;
+                        playerDead = false;
+                        GameController.controller.PlayerDead = true;
                     }
+
                 }
-                else //Move Normally
+                else //Player alive
                 {
-                    position = transform.position;
-                    position.x += Time.deltaTime * speed;
-                    transform.position = position;
+                    if (shieldDown) //Shield damage, lerp to damage site
+                    {
+                        transform.position = Vector3.Lerp(lastCamPos, playerDeathPos, ((Time.time - startTime) * lerpSpeed * 5) / journeyLength);
+                        transform.position = new Vector3(transform.position.x, 0, -10);
+                        if (transform.position.x == playerDeathPos.x)
+                        {
+                            shieldDamage.SetBool("TakingDamage", false);
+                            shieldDown = false;
+                        }
+                    }
+                    else //Move Normally
+                    {
+                        position = transform.position;
+                        position.x += Time.deltaTime * speed;
+                        transform.position = position;
+                    }
                 }
             }
         }

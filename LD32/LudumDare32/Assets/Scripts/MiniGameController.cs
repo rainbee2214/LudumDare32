@@ -38,11 +38,11 @@ public class MiniGameController : MonoBehaviour
         Debug.Log("Playing sound.");
         switch(resource)
         {
-            case 0: audioSource.PlayOneShot(mineCrystalsSound, 2f); break;
-            case 1: audioSource.PlayOneShot(mineOrganicsSound, 2f); break;
-            case 2: audioSource.PlayOneShot(mineMetalsSound, 2f); break;
+            case 0: audioSource.PlayOneShot(mineCrystalsSound, 1f); break;
+            case 1: audioSource.PlayOneShot(mineOrganicsSound, 1f); break;
+            case 2: audioSource.PlayOneShot(mineMetalsSound, 1f); break;
             case 3: audioSource.PlayOneShot(minePeopleSound, 2f); break;
-            case 4: audioSource.PlayOneShot(mineJunkSound, 2f); break;
+            case 4: audioSource.PlayOneShot(mineJunkSound, 1f); break;
         }
     }
 

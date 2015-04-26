@@ -62,6 +62,20 @@ public class GameController : MonoBehaviour
         set { people += value; }
     }
 
+    int hackingComputers;
+    public int HackingComputers
+    {
+        get { return hackingComputers; }
+        set { hackingComputers += value; }
+    }
+
+    int defenseComputers;
+    public int DefenseComputers
+    {
+        get { return defenseComputers; }
+        set { defenseComputers += value; }
+    }
+
     string playerName = "Bob";
     public string PlayerName
     {
@@ -235,7 +249,6 @@ public class GameController : MonoBehaviour
             uiController.SetShields(shieldCount);
         }
     }
-
 
     public void UpdateCurrentPlanetResources(string planetName, int cc, int oc, int mc, int pc, int jc)
     {
