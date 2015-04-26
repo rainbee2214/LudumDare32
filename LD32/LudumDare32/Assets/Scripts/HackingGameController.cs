@@ -14,10 +14,32 @@ public class HackingGameController : MonoBehaviour
 
     int topHacking, topDefense;
 
+    float nextEmitTime;
+    public float emitDelay = 0.5f;
+
+    public float resourceRange = 3f;
+
     void Awake()
     {
         GetResources();
         GetSounds();
+    }
+
+    void FixedUpdate()
+    { 
+        if (Time.time > nextEmitTime)
+        {
+            EmitResource();
+            nextEmitTime = Time.time + emitDelay;
+        }
+    }
+
+    public void EmitResource()
+    {
+        string type = "HackingComputer";
+        if (Random.Range(0, 100) % 2 == 0) type = "DefenseComputer";
+        Vector2 location = new Vector2(Random.Range(-resourceRange, resourceRange), Random.Range(-resourceRange, resourceRange));
+        StartResource(type, location);
     }
 
     void GetSounds()

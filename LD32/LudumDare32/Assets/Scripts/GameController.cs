@@ -213,9 +213,10 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Application.loadedLevelName == "Level" && player == null) player = GameObject.FindGameObjectWithTag("Player");
-        
-        if (Application.loadedLevelName == "HackLevel" && turnCameraOff)
+        string loadedLevel = Application.loadedLevelName;
+        if (loadedLevel == "Level" && player == null) player = GameObject.FindGameObjectWithTag("Player");
+
+        if (loadedLevel == "HackLevel" && turnCameraOff)
         {
             player.transform.position = Vector2.zero;
             cameraController.stop = true;
@@ -224,29 +225,33 @@ public class GameController : MonoBehaviour
 
         //When the game over scene is loaded, turn the main camera off
         //When the setup scene is loaded, turn the main camera back on
-        if (playerDead && Application.loadedLevelName == "Level")
+        if (playerDead && loadedLevel == "Level")
         {
             playerDead = false;
             Debug.Log("Loading game over");
             Application.LoadLevel("GameOver");
         }
 
-        if (Application.loadedLevelName == "GameOver")
+        if (loadedLevel == "GameOver")
         {
             mainCam.SetActive(false);
             Destroy(this);
         }
-        else if (Application.loadedLevelName == "Setup")
+        else if (loadedLevel == "Setup")
         {
             shieldCount = 3;
             playerDead = false;
             mainCam.SetActive(true);
         }
 
-        if (uiController != null)
+        if (uiController != null && loadedLevel == "Level")
         {
             uiController.UpdateResources(crystals, organics, metals, people, junk);
             uiController.SetShields(shieldCount);
+        }
+        else if (uiController != null && loadedLevel == "HackLevel")
+        {
+            uiController.UpdateHackerResources(hackingComputers, defenseComputers);
         }
     }
 

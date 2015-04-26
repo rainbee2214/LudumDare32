@@ -15,7 +15,9 @@ public class UIController : MonoBehaviour
                 organicText,
                 metalText,
                 peopleText,
-                junkText;
+                junkText,
+                hackingText,
+                defenseText;
 
     public Sprite awtinImage,
                   celidImage,
@@ -74,6 +76,14 @@ public class UIController : MonoBehaviour
         metalText.text = GetFormattedString(metalCount);
         peopleText.text = GetFormattedString(peopleCount);
         junkText.text = GetFormattedString(junkCount);
+    }
+
+    public void UpdateHackerResources(int hackingCount, int defenseCount)
+    {
+        if (hackingText == null) hackingText = GameObject.FindGameObjectWithTag("HackingText").GetComponent<Text>();
+        if (defenseText == null) defenseText = GameObject.FindGameObjectWithTag("DefenseText").GetComponent<Text>();
+        hackingText.text = GetFormattedString(hackingCount);
+        defenseText.text = GetFormattedString(defenseCount);
     }
 
     public void SetName(int raceIndex, string name)

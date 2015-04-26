@@ -8,6 +8,7 @@ public class HackingResource : Resource
     void Awake()
     {
         hackingGameController = GameObject.FindGameObjectWithTag("HackingGameController").GetComponent<HackingGameController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()

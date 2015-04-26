@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21296000}
   - 114: {fileID: 11493032}
   - 58: {fileID: 5849124}
+  - 95: {fileID: 9517238}
   m_Layer: 0
   m_Name: HackingComputer
   m_TagString: Untagged
@@ -43,6 +44,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .666666687
+--- !u!95 &9517238
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f27c4dbe8e694a145be986e67dfbaed9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11493032
 MonoBehaviour:
   m_ObjectHideFlags: 1
