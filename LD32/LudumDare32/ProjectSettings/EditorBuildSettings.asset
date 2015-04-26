@@ -8,10 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
   - enabled: 1
-    path: Assets/Scenes/Level.unity
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-  - enabled: 1
     path: Assets/Scenes/Setup.unity
   - enabled: 1
+    path: Assets/Scenes/Level.unity
+  - enabled: 1
+    path: Assets/Scenes/Between.unity
+  - enabled: 1
     path: Assets/Scenes/HackLevel.unity
+  - enabled: 1
+    path: Assets/Scenes/EndGameBetween.unity
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity

@@ -25,6 +25,10 @@ public class TimeController : MonoBehaviour
         int leftoverSeconds = seconds%60;
         time.text = minutes + ":" + (leftoverSeconds < 10 ? "0" : "") +leftoverSeconds;
 
-        if (minutes >= maxMinutes) Application.LoadLevel("HackLevel");
+        if (minutes >= maxMinutes)
+        {
+            if (Application.loadedLevelName == "Level") Application.LoadLevel("Between");
+            if (Application.loadedLevelName == "HackLevel") Application.LoadLevel("EndGameBetween");
+        }
     }
 }
